@@ -22,6 +22,9 @@ public class SpeechRecog extends AppCompatActivity implements TextToSpeech.OnIni
     TextView resultView;
     private int answer;
     private int input;
+    private int totalPoints;
+
+
 
     @Override
     public void onInit(int i) { }
@@ -64,8 +67,7 @@ public class SpeechRecog extends AppCompatActivity implements TextToSpeech.OnIni
                     if (intFound != -1) {
                         input = intFound;
                         resultView.setText(intFound);
-
-                        validateAnswer(input);
+                        validateAnswer();
                     } else {
                         Toast.makeText(getApplicationContext(), "Sorry, I didn't catch that! Please try again", Toast.LENGTH_LONG).show();
                     }
@@ -117,13 +119,27 @@ public class SpeechRecog extends AppCompatActivity implements TextToSpeech.OnIni
         return -1;
     }
 
+    //perform calculation to get answer from random numbers being operated on
     private void performCalculations() {
 
 
+        //set to int answer
+
     }
 
-    boolean validateAnswer(int input){
 
-        return true;
+    //validate the user's input received from speech recognition to the actual
+    //answer calculated from the random numbers by computer
+    private void validateAnswer(){
+
+        if (answer == input){
+
+            totalPoints = totalPoints+20;
+            //call random method
+        }
+        else {
+            //add 0 points
+            //call random method
+        }
     }
 }
