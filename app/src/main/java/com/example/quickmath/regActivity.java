@@ -52,32 +52,32 @@ public class regActivity extends AppCompatActivity {
         String age = regAge.getText().toString().trim();
 
 
-        if(firstName== " " || firstName.length() < 3 || firstName.length() > 12 ){
+        if(firstName== "" || firstName.length() < 3 || firstName.length() > 12 ){
 
             Toast.makeText(regActivity.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
 
         }
 
-        if(lastName== " " || lastName.length() < 3 || lastName.length() > 12 ){
+        if(lastName== "" || lastName.length() < 3 || lastName.length() > 12 ){
 
             Toast.makeText(regActivity.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
 
         }
 
 
-        if(email == " "){
+        if(email == ""){
             Toast.makeText(regActivity.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
 
 
         }
 
-        if(password == " " || password.length() < 8 || password.length() > 16){
+        if(password == "" || password.length() < 8 || password.length() > 16){
             Toast.makeText(regActivity.this, "Invalid Input, Password must be between 8 - 16 characters", Toast.LENGTH_SHORT).show();
 
 
         }
 
-        if(age == " " || age.length() != 8){
+        if(age == "" || age.length() != 8){
             Toast.makeText(regActivity.this, "Invalid Input, Date of Birth must be between 8 characters in numerical format", Toast.LENGTH_SHORT).show();
 
 

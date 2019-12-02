@@ -33,7 +33,7 @@ public class dbTest extends AppCompatActivity {
 
     //FirebaseDatabase test;
     //DatabaseReference testRef;
-    TestStudent testStudent, testStudent2;
+    Student testStudent, testStudent2;
     FirebaseFirestore test1;
     DocumentReference testDoc;
 
@@ -65,8 +65,7 @@ public class dbTest extends AppCompatActivity {
 
 
 
-        testStudent = new TestStudent("90", "TEST", "1");
-        testStudent2 = new TestStudent("100", "TEST1", "1");
+
 
 
 
@@ -90,18 +89,6 @@ public class dbTest extends AppCompatActivity {
 
     private void TEST(View view) {
 
-        Map<String, Object> dataToSave = new HashMap<>();
-        dataToSave.put(SCORE,testStudent.getScore());
-        dataToSave.put(USER, testStudent.getUID());
-        dataToSave.put(TEST_NUMBER, testStudent.getTestNumber());
-        testDoc.set(dataToSave);
-
-        Map<String, Object> dataToSave2 = new HashMap<>();
-        dataToSave.put(SCORE,testStudent2.getScore());
-        dataToSave.put(USER, testStudent2.getUID());
-        dataToSave.put(TEST_NUMBER, testStudent2.getTestNumber());
-        testDoc.set(dataToSave);
-        //testRef.push().setValue(testStudent);
 
     }
 
