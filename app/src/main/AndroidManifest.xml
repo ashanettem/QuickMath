@@ -16,6 +16,8 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter></activity>
         <activity android:name=".regActivity"></activity>
+        <activity android:name=".allcalculation"></activity>
+        <activity android:name=".choices"></activity>
 
 
     </application>
