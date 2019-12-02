@@ -4,21 +4,21 @@ import java.io.Serializable;
 
 public class TestStudent implements Serializable {
 
-    private int score;
+    private String score;
     private String UID;
-    private int testNumber;
+    private String testNumber;
 
     public TestStudent(){
 
     }
 
-    public TestStudent(int score, String UID, int testNumber){
+    public TestStudent(String score, String UID, String testNumber){
         this.score = score;
         this. UID = UID;
         this.testNumber = testNumber;
     }
 
-    public int getScore() {
+    public String getScore() {
         return score;
     }
 
@@ -26,15 +26,15 @@ public class TestStudent implements Serializable {
         return UID;
     }
 
-    public int getTestNumber() {
+    public String getTestNumber() {
         return testNumber;
     }
 
-    public void setScore(int score) {
+    public void setScore(String score) {
         this.score = score;
     }
 
-    public void setTestNumber(int testNumber) {
+    public void setTestNumber(String testNumber) {
         this.testNumber = testNumber;
     }
 
