@@ -52,14 +52,14 @@ public class allcalculation extends AppCompatActivity {
 
         if (count<=5){ // how many question you want to get
             to_get_random();
-            num_of_question.setText(count + " /5");
+            num_of_question.setText(count + " /" + count);
 
 
 
 
         }
         else{
-            Intent goback_to_first_page= new Intent(this,MainActivity.class);
+            Intent goback_to_first_page= new Intent(this,choices.class);
             startActivity(goback_to_first_page);
             //Toast.makeText(this,"Sorry you are done for the day  ",Toast.LENGTH_SHORT).show();
         }
@@ -162,7 +162,7 @@ public class allcalculation extends AppCompatActivity {
 
     public void onclick(View view) {
 
-        if(enter_num.getText().toString().length()==0){// make suret that the editext is not empty
+        if(enter_num.getText().toString().length()==0){// make sure that the editext is not empty
             Toast.makeText(this,"enter number",Toast.LENGTH_LONG).show();
         }
         else {

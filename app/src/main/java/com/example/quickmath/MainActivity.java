@@ -51,18 +51,13 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
-        // loginBtn.setOnClickListener(v ->{
-
-            //Login Activity, check if user login is correct. Throw out error id login is invalid
-          //Intent;
-
-
-
-       //
-
-       //;
-
-
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i =  new Intent(view.getContext(), choices.class);
+                startActivity(i);
+            }
+        });
 
 
 
