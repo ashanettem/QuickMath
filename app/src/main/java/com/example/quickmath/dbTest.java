@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -35,7 +36,8 @@ public class dbTest extends AppCompatActivity {
     //DatabaseReference testRef;
     Student testStudent, testStudent2;
     FirebaseFirestore test1;
-    DocumentReference testDoc;
+    CollectionReference testDoc;
+
 
 
     Button btnTest, btnDisplay;
@@ -52,15 +54,10 @@ public class dbTest extends AppCompatActivity {
         tvScore = findViewById(R.id.tvExamScore);
         tvUser = findViewById(R.id.tvUser);
 
-        btnTest.setOnClickListener(this::TEST);
-        btnDisplay.setOnClickListener(this::Display);
 
-
-        //test = FirebaseDatabase.getInstance();
-        //testRef = test.getReference().child("TEST");
 
         test1 = FirebaseFirestore.getInstance();
-        testDoc = test1.document("TEST/TESTLL");
+        testDoc = test1.collection("TEST");
 
 
 
@@ -70,27 +67,8 @@ public class dbTest extends AppCompatActivity {
 
 
 
-
-    }
-
-    private void Display(View view) {
-
-        testDoc.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                if (documentSnapshot.exists()){
-                    tvTestNumber.setText(documentSnapshot.getString(TEST_NUMBER));
-                    tvScore.setText(documentSnapshot.getString(SCORE));
-                    tvUser.setText(documentSnapshot.getString(USER));
-                }
-            }
-        });
-    }
-
-    private void TEST(View view) {
 
 
     }
-
 
 }
