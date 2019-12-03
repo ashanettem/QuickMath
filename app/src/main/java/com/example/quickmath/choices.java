@@ -28,6 +28,8 @@ public class choices extends AppCompatActivity {
 
     public void Button_add(View view) {
 
+
+
         if (q5.isChecked()) {
             getIntent().putExtra("numOfQuestions", 5);
         }
