@@ -8,4 +8,6 @@
     <string name="_10_questions">10 Questions</string>
     <string name="_15_questions">15 Questions</string>
     <string name="logout">LogOut</string>
+    <string name="calculate">Calculate</string>
+    <string name="plus">+</string>
 </resources>
