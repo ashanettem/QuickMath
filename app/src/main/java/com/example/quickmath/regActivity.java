@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class regActivity extends AppCompatActivity {
 
     EditText regEmail;
@@ -36,10 +39,8 @@ public class regActivity extends AppCompatActivity {
         regAge = findViewById(R.id.dobTxt);
         regBtn = findViewById(R.id.btnReg);
 
-        sp = getSharedPreferences("registrationLog", MODE_PRIVATE);
 
-        edit = sp.edit();
-
+        regBtn.setOnClickListener(this::register);
 
     }
 
@@ -85,15 +86,10 @@ public class regActivity extends AppCompatActivity {
 
         else {
 
-            edit.putString("First Name", firstName);
-            edit.putString("Last Name", lastName);
-            edit.putString("Password", password);
-            edit.putString("Email", email);
-            edit.putString("Date of Birth", age);
+            Student newStudent  = new Student( firstName, lastName, email, age ,password,"Student");
 
-
-            edit.commit();
-
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            db.collection("Students").add(newStudent);
 
             Intent intent;
             intent = new Intent(this, MainActivity.class);

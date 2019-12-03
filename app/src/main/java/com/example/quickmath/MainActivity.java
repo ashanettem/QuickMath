@@ -9,6 +9,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -34,19 +43,18 @@ public class MainActivity extends AppCompatActivity {
         loginBtn = findViewById(R.id.uLogin);
         regLnk = findViewById(R.id.uReg);
 
-        sp = getSharedPreferences( "registrationLog", 0);
+        sp = getSharedPreferences("registrationLog", 0);
 
 
         regLnk.setOnClickListener(new View.OnClickListener() {
-            @Override
-             public void onClick(View v) {
+                                      @Override
+                                      public void onClick(View v) {
 
-                Intent startNewActivity = new Intent(v.getContext(), regActivity.class);
-                startActivity(startNewActivity);
+                                          Intent startNewActivity = new Intent(v.getContext(), regActivity.class);
+                                          startActivity(startNewActivity);
 
-                }
-             }
-
+                                      }
+                                  }
 
 
         );
@@ -54,12 +62,39 @@ public class MainActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i =  new Intent(view.getContext(), choices.class);
-                startActivity(i);
+
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CollectionReference usersDB = db.collection("Students");
+
+                String user = emailTxt.getText().toString();
+                String pass = passTxt.getText().toString();
+
+
+
+
+                usersDB.whereEqualTo("email", user).limit(1).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots){
+                            Student currentUser = documentSnapshot.toObject(Student.class);
+
+                            String email = currentUser.getEmail();
+                            String password = currentUser.getPassword();
+
+                            if (email.equals(user) && password.equals(pass)){
+                                Intent intent = new Intent(view.getContext(),choices.class);
+                                intent.putExtra("User" , email);
+                                startActivity(intent);
+                            }
+                            else{
+                                Toast.makeText(MainActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    }
+                });
+
             }
         });
-
-
 
     }
 }

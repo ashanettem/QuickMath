@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.Random;
 
 public class allcalculation extends AppCompatActivity {
@@ -19,13 +22,20 @@ public class allcalculation extends AppCompatActivity {
     private EditText enter_num;
     private TextView textView2;
     int count=0;
-    int tryme=0;
+    int tryMe=0;
     int Final_result=0;
+    String email;
+    String value;
+    int numOfquestions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allcalculation);
 
+
+        email = getIntent().getStringExtra("User");
+        value = getIntent().getStringExtra("value");
+        numOfquestions = Integer.parseInt(getIntent().getStringExtra("numOfQuestions"));
 
         result=findViewById(R.id.result);
         num11=findViewById(R.id.num_one);
@@ -36,13 +46,7 @@ public class allcalculation extends AppCompatActivity {
 
 
 
-
-
-
         tocall();
-
-
-
 
 
     }
@@ -50,17 +54,24 @@ public class allcalculation extends AppCompatActivity {
     private void tocall() {
         count++;
 
-        if (count<=5){ // how many question you want to get
+        if (count<=numOfquestions){ // how many question you want to get
             to_get_random();
-            num_of_question.setText(count + " /" + count);
+            num_of_question.setText(count + " /" + numOfquestions);
 
 
 
 
         }
         else{
-            Intent goback_to_first_page= new Intent(this,choices.class);
-            startActivity(goback_to_first_page);
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            CollectionReference examDB = db.collection("Exams");
+
+            Exam currentExam = new Exam(value, numOfquestions,  email, Final_result);
+
+            examDB.add(currentExam);
+
+            Intent go_back_to_first_page= new Intent(this,choices.class);
+            startActivity(go_back_to_first_page);
             //Toast.makeText(this,"Sorry you are done for the day  ",Toast.LENGTH_SHORT).show();
         }
     }
@@ -121,7 +132,7 @@ public class allcalculation extends AppCompatActivity {
 
         else {
             int the_result= rand1/rand2;
-            tryme=the_result;
+            tryMe=the_result;
             result.setText(String.valueOf(the_result));
         }
 
@@ -133,7 +144,7 @@ public class allcalculation extends AppCompatActivity {
         textView2.setText("-");
 
         int the_result= rand1- rand2;
-        tryme=the_result;
+        tryMe=the_result;
         result.setText(String.valueOf(the_result));
 
     }
@@ -142,7 +153,7 @@ public class allcalculation extends AppCompatActivity {
     private void tomultiply(int rand1, int rand2) {
         int the_result=rand1 * rand2;
         textView2.setText("X");
-        tryme=the_result;
+        tryMe=the_result;
         result.setText(String.valueOf(the_result));
 
     }
@@ -151,7 +162,7 @@ public class allcalculation extends AppCompatActivity {
     private void toadd(int rand1, int rand2) {
 
         int the_result=rand1 + rand2;
-        tryme=the_result;
+        tryMe=the_result;
         result.setText(String.valueOf(the_result));
 
     }
@@ -173,7 +184,7 @@ public class allcalculation extends AppCompatActivity {
 
 
 
-            if (my_input==tryme){
+            if (my_input==tryMe){
                 Final_result+=20;
                 Toast.makeText(this,"RESULT :"+Final_result,Toast.LENGTH_LONG).show();  //display the result
 

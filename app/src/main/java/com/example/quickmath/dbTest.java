@@ -63,6 +63,9 @@ public class dbTest extends AppCompatActivity {
 
 
 
+        btnTest.setOnClickListener(this::saveInfo);
+
+
 
 
 
@@ -70,5 +73,12 @@ public class dbTest extends AppCompatActivity {
 
 
     }
+
+    private void saveInfo(View view) {
+        User test = new User("M", "P", "mp@gmail.com","15", "Password1");
+        testDoc.add(test);
+    }
+
+
 
 }

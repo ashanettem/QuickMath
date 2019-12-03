@@ -1,5 +1,7 @@
 package com.example.quickmath;
 
+import com.google.firebase.firestore.Exclude;
+
 public class User {
     private String firstName;
     private String lastName;
@@ -13,13 +15,13 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String age, String password, String UID) {
+    public User(String firstName, String lastName, String email, String age, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.age = age;
         this.password = password;
-        this.UID = UID;
+
     }
 
     public String getFirstName() {
@@ -62,6 +64,7 @@ public class User {
         this.password = password;
     }
 
+    @Exclude
     public String getUID() {
         return UID;
     }

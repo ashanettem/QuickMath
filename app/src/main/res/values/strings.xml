@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">QuickMath</string>
+    <string name="add">add</string>
+    <string name="multiply">multiply</string>
+    <string name="substract">SUBSTRACT</string>
+    <string name="divide">divide</string>
+    <string name="_5_questions">5 Questions</string>
+    <string name="_10_questions">10 Questions</string>
+    <string name="_15_questions">15 Questions</string>
+    <string name="logout">LogOut</string>
 </resources>
