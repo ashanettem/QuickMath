@@ -361,8 +361,8 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
                 return 43;
             case "fourty four":
                 return 44;
-            case "fourty one":
-                return 41;
+            case "fourty five":
+                return 45;
 
         }
         return -1;
