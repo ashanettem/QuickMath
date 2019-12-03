@@ -92,7 +92,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
                     int intFound = getNumberFromResult(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
                     if (intFound != -1) {
                         input = intFound;
-                        result.setText(intFound);
+                        result.setText(String.valueOf(intFound));
                         validateAnswer();
                     } else {
                         Toast.makeText(getApplicationContext(), "Sorry, I didn't catch that! Please try again", Toast.LENGTH_LONG).show();
