@@ -198,7 +198,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         else {
             int the_result= rand1/rand2;
             tryMe=the_result;
-            result.setText(String.valueOf(the_result)); //comment out
+           // result.setText(String.valueOf(the_result)); //comment out
         }
 
     }
@@ -210,7 +210,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
         int the_result= rand1- rand2;
         tryMe=the_result;
-        result.setText(String.valueOf(the_result)); //comment out
+        //result.setText(String.valueOf(the_result)); //comment out
 
     }
 
@@ -219,7 +219,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         int the_result=rand1 * rand2;
         textView2.setText("X");
         tryMe=the_result;
-        result.setText(String.valueOf(the_result)); //comment out
+        //result.setText(String.valueOf(the_result)); //comment out
 
     }
 
@@ -228,7 +228,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
         int the_result=rand1 + rand2;
         tryMe=the_result;
-        result.setText(String.valueOf(the_result)); //comment out
+        //result.setText(String.valueOf(the_result)); //comment out
 
     }
 
@@ -323,6 +323,46 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
                 return 24;
             case "twenty five":
                 return 25;
+            case "twenty six":
+                return 26;
+            case "twenty seven":
+                return 27;
+            case "twenty eight":
+                return 28;
+            case "twenty nine":
+                return 29;
+            case "thirty":
+                return 30;
+            case "thirty one":
+                return 31;
+            case "thirty two":
+                return 32;
+            case "thirty three":
+                return 33;
+            case "thirty four":
+                return 34;
+            case "thirty five":
+                return 35;
+            case "thirty six":
+                return 36;
+            case "thirty seven":
+                return 37;
+            case "thirty eight":
+                return 38;
+            case "thirty nine":
+                return 39;
+            case "fourty":
+                return 40;
+            case "fourty one":
+                return 41;
+            case "fourty two":
+                return 42;
+            case "fourty three":
+                return 43;
+            case "fourty four":
+                return 44;
+            case "fourty one":
+                return 41;
 
         }
         return -1;
