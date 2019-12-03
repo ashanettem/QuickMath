@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -36,6 +37,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     String value;
     String amount;
     int numOfquestions;
+    SharedPreferences sp;
 
     @Override
     public void onInit(int i) { }
@@ -49,7 +51,8 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         email = getIntent().getStringExtra("User");
         value = getIntent().getStringExtra("value");
 
-        numOfquestions = getIntent().getIntExtra("numOfQuestions");
+        sp = getSharedPreferences("SP", MODE_PRIVATE);
+        numOfquestions = sp.getInt("numOfQuestions" , 5);
 
 
         inputButton = (Button)findViewById(R.id.button);
