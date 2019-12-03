@@ -259,7 +259,8 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
             }
 
 
-            enter_num.getText().clear();  // clear the edittext
+            enter_num.getText().clear();//clear the editText
+            result.setText("");// clears input
             tocall();// goback and call the call method
 
         }
