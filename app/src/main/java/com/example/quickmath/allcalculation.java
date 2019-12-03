@@ -3,6 +3,7 @@ package com.example.quickmath;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -27,8 +28,9 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     int Final_result=0;
     String email;
     String value;
-    String amount;
     int numOfquestions;
+    SharedPreferences sp;
+
 
     @Override
     public void onInit(int i) { }
@@ -38,11 +40,12 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_allcalculation);
 
+        sp = getSharedPreferences("SP", MODE_PRIVATE);
 
         email = getIntent().getStringExtra("User");
         value = getIntent().getStringExtra("value");
-        amount = getIntent().getStringExtra("numOfQuestions");
-        numOfquestions = Integer.parseInt(amount);
+
+        numOfquestions = sp.getInt("numOfQuestions", 5);
 
 
 
