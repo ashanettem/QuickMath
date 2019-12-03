@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Random;
 
-public class allcalculation extends AppCompatActivity {
+public class allcalculation extends AppCompatActivity implements TextToSpeech.OnInitListener{
     private TextView num11;
     private TextView num12;
     private TextView result;
@@ -28,6 +29,10 @@ public class allcalculation extends AppCompatActivity {
     String value;
     String amount;
     int numOfquestions;
+
+    @Override
+    public void onInit(int i) { }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +41,8 @@ public class allcalculation extends AppCompatActivity {
 
         email = getIntent().getStringExtra("User");
         value = getIntent().getStringExtra("value");
-        numOfquestions = getIntent().getIntExtra("numOfQuestions");
+        amount = getIntent().getStringExtra("numOfQuestions");
+        numOfquestions = Integer.parseInt(amount);
 
 
 
