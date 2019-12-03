@@ -53,13 +53,13 @@ public class choices extends AppCompatActivity {
 
     public void Button_multiply(View view) {
 
-        if (q5.isChecked()) {
+        if (q5.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 5);
         }
-        else if (q10.isChecked()) {
+        else if (q10.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 10);
         }
-        else if (q15.isChecked()) {
+        else if (q15.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 15);
         }
         else{
@@ -76,13 +76,13 @@ public class choices extends AppCompatActivity {
 
     public void Button_substract(View view) {
 
-        if (q5.isChecked()) {
+        if (q5.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 5);
         }
-        else if (q10.isChecked()) {
+        else if (q10.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 10);
         }
-        else if (q15.isChecked()) {
+        else if (q15.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 15);
         }
         else{
@@ -99,13 +99,13 @@ public class choices extends AppCompatActivity {
 
     public void divide_button(View view) {
 
-        if (q5.isChecked()) {
+        if (q5.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 5);
         }
-        else if (q10.isChecked()) {
+        else if (q10.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 10);
         }
-        else if (q15.isChecked()) {
+        else if (q15.isChecked() == true) {
             getIntent().putExtra("numOfQuestions", 15);
         }
         else{

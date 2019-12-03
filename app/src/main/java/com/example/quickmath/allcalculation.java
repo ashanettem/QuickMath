@@ -26,6 +26,7 @@ public class allcalculation extends AppCompatActivity {
     int Final_result=0;
     String email;
     String value;
+    String amount;
     int numOfquestions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,9 @@ public class allcalculation extends AppCompatActivity {
 
         email = getIntent().getStringExtra("User");
         value = getIntent().getStringExtra("value");
-        numOfquestions = Integer.parseInt(getIntent().getStringExtra("numOfQuestions"));
+        numOfquestions = getIntent().getIntExtra("numOfQuestions");
+
+
 
         result=findViewById(R.id.result);
         num11=findViewById(R.id.num_one);
