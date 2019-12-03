@@ -56,37 +56,33 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:onClick="Button_add"
                 android:text="@string/add"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/Substract_button"
+                android:id="@+id/subtract_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:onClick="Button_substract"
                 android:text="@string/substract"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/Multiply_button"
+                android:id="@+id/multiply_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:onClick="Button_multiply"
                 android:text="@string/multiply"
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/divide_button2"
+                android:id="@+id/divide_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:onClick="divide_button"
                 android:text="@string/divide"
                 android:textSize="20sp" />
 
@@ -95,6 +91,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/logout"
+                android:id="@+id/logOut_button"
                 android:textSize="20sp" />
         </LinearLayout>
     </ScrollView>
