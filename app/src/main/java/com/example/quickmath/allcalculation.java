@@ -330,6 +330,5 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         //return num;
     }
 
-    }
-
 }
+
