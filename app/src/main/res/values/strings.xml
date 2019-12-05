@@ -10,4 +10,21 @@
     <string name="logout">LogOut</string>
     <string name="calculate">Calculate</string>
     <string name="plus">+</string>
+    <string name="parent_s_email">Parent\'s Email</string>
+    <string name="password">Password</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="child_s_email">Child\'s Email</string>
+    <string name="register">register</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="administrator">Administrator:</string>
+    <string name="child_results">Child Results</string>
+    <string name="create_exam">Create Exam</string>
+    <string name="questionOne">How Many Questions?</string>
+    <string name="questionTwo">Select Your Operator:</string>
+    <string name="addition">Addition</string>
+    <string name="subtraction">Subtraction</string>
+    <string name="multiplication">Multiplication</string>
+    <string name="division">Division</string>
+    <string name="submit">CREATE</string>
 </resources>
