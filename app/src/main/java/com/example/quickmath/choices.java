@@ -42,14 +42,13 @@ public class choices extends AppCompatActivity {
         divide.setOnClickListener(this::divide_button);
         mulitply.setOnClickListener(this::Button_multiply);
 
-        logOut.setOnClickListener(this::returnHome);
-
+        logOut.setOnClickListener(this::logOut);
 
     }
 
-    private void returnHome(View view) {
-        Intent intent = new Intent(this,MainActivity.class);
-        startActivity(intent);
+    private void logOut(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     public void Button_add(View view) {

@@ -9,21 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".childResults"></activity>
-        <activity android:name=".adminDash" />
-        <activity android:name=".adminReg" />
-        <activity android:name=".createExam" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dbTest" />
-        <activity android:name=".regActivity" />
-        <activity android:name=".allcalculation" />
-        <activity android:name=".choices" />
+
+        <activity android:name=".dbTest"></activity>
+        <activity android:name=".regActivity"></activity>
+        <activity android:name=".allcalculation"></activity>
+        <activity android:name=".choices"></activity>
+
+
     </application>
 
 </manifest>
