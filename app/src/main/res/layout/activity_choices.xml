@@ -6,7 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".choices">
+    tools:context=".choices"
+
+
+    >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -57,7 +60,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:text="@string/add"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+
+                />
 
             <Button
                 android:id="@+id/subtract_button"
@@ -66,7 +71,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/substract"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
             <Button
                 android:id="@+id/multiply_button"
@@ -75,7 +81,8 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/multiply"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
             <Button
                 android:id="@+id/divide_button"
@@ -84,7 +91,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/divide"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+
+                />
 
             <Button
                 android:layout_width="match_parent"
@@ -92,7 +101,8 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/logout"
                 android:id="@+id/logOut_button"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+               />
         </LinearLayout>
     </ScrollView>
 
