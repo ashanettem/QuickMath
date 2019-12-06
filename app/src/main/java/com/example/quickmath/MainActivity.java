@@ -85,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
                                 Intent intent = new Intent(view.getContext(),choices.class);
                                 intent.putExtra("User" , email);
                                 startActivity(intent);
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                             }
                             else{
                                 Toast.makeText(MainActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
