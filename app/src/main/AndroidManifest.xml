@@ -15,11 +15,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".adminReg"></activity>
         <activity android:name=".dbTest"></activity>
         <activity android:name=".regActivity"></activity>
         <activity android:name=".allcalculation"></activity>
         <activity android:name=".choices"></activity>
+        <activity android:name=".adminDash"></activity>
+        <activity android:name=".childResults"></activity>
+        <activity android:name=".createExam"></activity>
 
 
     </application>

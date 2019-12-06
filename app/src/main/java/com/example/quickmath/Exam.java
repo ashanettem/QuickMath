@@ -8,6 +8,7 @@ public class Exam {
     private int score;
     private String child;
     private String parent;
+    private String state;
 
     public Exam() {
     }
@@ -24,6 +25,23 @@ public class Exam {
         this.numOfQuestions = numOfQuestions;
         this.child = child;
         this.parent = parent;
+    }
+
+    public Exam(String type, int numOfQuestions, int score, String child, String parent, String state) {
+        this.type = type;
+        this.numOfQuestions = numOfQuestions;
+        this.score = score;
+        this.child = child;
+        this.parent = parent;
+        this.state = state;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getType() {

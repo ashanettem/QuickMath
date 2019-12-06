@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailTxt;
     EditText passTxt;
     Button loginBtn;
-    TextView regLnk;
+    TextView regLnk, submit;
 
     SharedPreferences sp;
 
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         passTxt = findViewById(R.id.uPass);
         loginBtn = findViewById(R.id.uLogin);
         regLnk = findViewById(R.id.uReg);
+        submit = findViewById(R.id.adminReg);
 
         sp = getSharedPreferences("registrationLog", 0);
 
@@ -54,14 +55,24 @@ public class MainActivity extends AppCompatActivity {
                                           startActivity(startNewActivity);
 
                                       }
+
+
                                   }
-
-
         );
 
-        loginBtn.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),adminReg.class);
+                startActivity(intent);
+            }
+        });
+
+        loginBtn.setOnClickListener(new View.OnClickListener()
+
+            {
+                @Override
+                public void onClick (View view){
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
                 CollectionReference usersDB = db.collection("Students");
@@ -70,23 +81,20 @@ public class MainActivity extends AppCompatActivity {
                 String pass = passTxt.getText().toString();
 
 
-
-
                 usersDB.whereEqualTo("email", user).limit(1).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots){
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                             Student currentUser = documentSnapshot.toObject(Student.class);
 
                             String email = currentUser.getEmail();
                             String password = currentUser.getPassword();
 
-                            if (email.equals(user) && password.equals(pass)){
-                                Intent intent = new Intent(view.getContext(),choices.class);
-                                intent.putExtra("User" , email);
+                            if (email.equals(user) && password.equals(pass)) {
+                                Intent intent = new Intent(view.getContext(), choices.class);
+                                intent.putExtra("User", email);
                                 startActivity(intent);
-                            }
-                            else{
+                            } else {
                                 Toast.makeText(MainActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
                             }
                         }
@@ -94,7 +102,9 @@ public class MainActivity extends AppCompatActivity {
                 });
 
             }
-        });
+            });
 
-    }
+        }
+
+
 }

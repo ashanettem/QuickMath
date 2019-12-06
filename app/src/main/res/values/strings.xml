@@ -27,4 +27,5 @@
     <string name="multiplication">Multiplication</string>
     <string name="division">Division</string>
     <string name="submit">CREATE</string>
+    <string name="signup">Admin Sign-Up</string>
 </resources>
