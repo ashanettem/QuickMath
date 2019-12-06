@@ -77,8 +77,8 @@ public class adminReg extends AppCompatActivity {
 
         }
 
-        if(childE == "" || childE.length() != 8){
-            Toast.makeText(adminReg.this, "Invalid Input, Date of Birth must be between 8 characters in numerical format", Toast.LENGTH_SHORT).show();
+        if(childE == ""){
+            Toast.makeText(adminReg.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
 
 
         }
