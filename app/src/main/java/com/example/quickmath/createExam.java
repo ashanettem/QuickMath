@@ -61,6 +61,7 @@ public class createExam extends AppCompatActivity {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
             newExam.setState("incomplete");
+            exams.add(newExam);
         }
         else if (q10.isChecked()) {
             newExam.setNumOfQuestions(10);
@@ -80,6 +81,7 @@ public class createExam extends AppCompatActivity {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
             newExam.setState("incomplete");
+            exams.add(newExam);
         }
         else if (q15.isChecked()) {
             newExam.setNumOfQuestions(15);
@@ -99,6 +101,7 @@ public class createExam extends AppCompatActivity {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
             newExam.setState("incomplete");
+            exams.add(newExam);
         }
         else{
             Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
