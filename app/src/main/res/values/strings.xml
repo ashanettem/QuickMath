@@ -28,4 +28,8 @@
     <string name="division">Division</string>
     <string name="submit">CREATE</string>
     <string name="signup">Admin Sign-Up</string>
+    <string name="dob">mm/dd/yyyy</string>
+    <string name="parent_email">Parent Email</string>
+
+
 </resources>
