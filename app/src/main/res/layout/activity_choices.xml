@@ -5,94 +5,116 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".choices">
+    android:orientation="horizontal"
+    tools:context=".choices"
+    android:background="@android:color/holo_green_dark"
+    android:padding="10dp"
+    >
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="130sp"
+                app:srcCompat="@drawable/calc_img" />
 
             <RadioGroup
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp">
+                android:layout_height="wrap_content">
 
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:id="@+id/q5"
+                    android:layout_width="351dp"
+                    android:layout_height="58dp"
                     android:text="@string/_5_questions"
-                    android:textSize="20sp"
-                    android:id="@+id/q5"/>
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:id="@+id/q10"
+                    android:layout_width="351dp"
+                    android:layout_height="58dp"
+
                     android:text="@string/_10_questions"
-                    android:textSize="20sp"
-                    android:id="@+id/q10"/>
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
                 <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:id="@+id/q15"
+                    android:layout_width="351dp"
+                    android:layout_height="58dp"
                     android:text="@string/_15_questions"
-                    android:textSize="20sp"
-                    android:id="@+id/q15"/>
+                    android:textColor="@color/common_google_signin_btn_text_dark_default"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
 
 
             </RadioGroup>
 
             <Button
                 android:id="@+id/add_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="351dp"
+                android:layout_height="58dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:text="@string/add"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
             <Button
                 android:id="@+id/subtract_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="351dp"
+                android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/substract"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
             <Button
                 android:id="@+id/multiply_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="351dp"
+                android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/multiply"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
             <Button
                 android:id="@+id/divide_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="351dp"
+                android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:text="@string/divide"
+                android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 
             <Button
-                android:layout_width="match_parent"
+                android:id="@+id/logOut_button"
+                android:layout_width="351dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="@string/logout"
-                android:id="@+id/logOut_button"
-                android:textSize="20sp" />
+                android:textColor="@color/colorPrimary"
+                android:textSize="20sp"
+                android:layout_gravity="center"/>
         </LinearLayout>
     </ScrollView>
 

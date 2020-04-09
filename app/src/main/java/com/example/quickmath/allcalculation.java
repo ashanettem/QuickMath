@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-public class allcalculation extends AppCompatActivity implements TextToSpeech.OnInitListener{
+public class allcalculation extends AppCompatActivity implements TextToSpeech.OnInitListener {
     private TextView num11;
     private TextView num12;
     private TextView result;
@@ -30,9 +30,9 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     private TextView textView2;
     private Button inputButton;
     private int input;
-    int count=0;
-    int tryMe=0;
-    int Final_result=0;
+    int count = 0;
+    int tryMe = 0;
+    int Final_result = 0;
     String email;
     String value;
     String amount;
@@ -40,7 +40,8 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     SharedPreferences sp;
 
     @Override
-    public void onInit(int i) { }
+    public void onInit(int i) {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,24 +53,24 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         value = getIntent().getStringExtra("value");
 
         sp = getSharedPreferences("SP", MODE_PRIVATE);
-        numOfquestions = sp.getInt("numOfQuestions" , 5);
+        numOfquestions = sp.getInt("numOfQuestions", 5);
 
 
-        inputButton = (Button)findViewById(R.id.button);
-        result=findViewById(R.id.result);
-        num11=findViewById(R.id.num_one);
-        num12=findViewById(R.id.num_two);
-        num_of_question=findViewById(R.id.textView5);
-        enter_num=findViewById(R.id.editText);
-        textView2=findViewById(R.id.textView2);
+        inputButton = (Button) findViewById(R.id.button);
+        result = findViewById(R.id.result);
+        num11 = findViewById(R.id.num_one);
+        num12 = findViewById(R.id.num_two);
+        num_of_question = findViewById(R.id.textView5);
+        enter_num = findViewById(R.id.editText);
+        textView2 = findViewById(R.id.textView2);
 
 
         tocall();
 
 
-        inputButton.setOnClickListener(new View.OnClickListener(){
+        inputButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick (View view){
+            public void onClick(View view) {
                 Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
                 intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
@@ -119,23 +120,21 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     private void tocall() {
         count++;
 
-        if (count<=numOfquestions){ // how many question you want to get
+        if (count <= numOfquestions) { // how many question you want to get
             to_get_random();
             num_of_question.setText(count + " /" + numOfquestions);
 
 
-
-
-        }
-        else{
+        } else {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             CollectionReference examDB = db.collection("Exams");
 
-            Exam currentExam = new Exam(value, numOfquestions,  email, Final_result);
-
+            Exam currentExam = new Exam(value, numOfquestions, email, Final_result);
+            currentExam.setState("complete");
+            currentExam.setChild(email);
             examDB.add(currentExam);
 
-            Intent go_back_to_first_page= new Intent(this,choices.class);
+            Intent go_back_to_first_page = new Intent(this, choices.class);
             startActivity(go_back_to_first_page);
             //Toast.makeText(this,"Sorry you are done for the day  ",Toast.LENGTH_SHORT).show();
         }
@@ -143,62 +142,53 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
 
     private void to_get_random() {
-        int rand1=new Random().nextInt(5);// random number between 0 to 5
-        int rand2=new Random().nextInt(5);
+        int rand1 = new Random().nextInt(10);// random number between 0 to 5
+        int rand2 = new Random().nextInt(5);
 
 
-        if (rand1<rand2){
+        if (rand1 < rand2) {
             to_get_random();
             // Toast.makeText(this," here",Toast.LENGTH_LONG).show();
 
 
-        }
-        else if(rand1>rand2 || rand1==rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
+        } else if (rand1 > rand2 || rand1 == rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
             num11.setText(String.valueOf(rand1));
             num12.setText(String.valueOf(rand2));
 
-            String mychoice=getIntent().getStringExtra("value");
+            String mychoice = getIntent().getStringExtra("value");
 
 
-            if( mychoice.equals("addition")){
+            if (mychoice.equals("addition")) {
                 toadd(rand1, rand2);
-            }
-            else if(mychoice.equals("multiply")){
-                tomultiply(rand1,rand2);
+            } else if (mychoice.equals("multiply")) {
+                tomultiply(rand1, rand2);
 
-            }
-            else if(mychoice.equals("substract")){
-                tosubstract(rand1,rand2);
+            } else if (mychoice.equals("substract")) {
+                tosubstract(rand1, rand2);
 
-            }
-            else if(mychoice.equals("divide")){
-                todivide(rand1,rand2);
+            } else if (mychoice.equals("divide")) {
+                todivide(rand1, rand2);
 
-            }
-
-            else {
-                Toast.makeText(this," inside error",Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, " inside error", Toast.LENGTH_LONG).show();
             }
 
 
-        }
-        else {
-            Toast.makeText(this," there is an error",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, " there is an error", Toast.LENGTH_LONG).show();
         }
 
     }
 
 
     private void todivide(int rand1, int rand2) {
-        textView2.setText("/");  // this is for the sign
-        if(rand1%rand2!=0){
+        textView2.setText(" / ");  // this is for the sign
+        if (rand1 % rand2 != 0) {
             to_get_random();
-        }
-
-        else {
-            int the_result= rand1/rand2;
-            tryMe=the_result;
-           // result.setText(String.valueOf(the_result)); //comment out
+        } else {
+            int the_result = rand1 / rand2;
+            tryMe = the_result;
+            // result.setText(String.valueOf(the_result)); //comment out
         }
 
     }
@@ -206,19 +196,19 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
     private void tosubstract(int rand1, int rand2) {
 
-        textView2.setText("-");
+        textView2.setText(" - ");
 
-        int the_result= rand1- rand2;
-        tryMe=the_result;
+        int the_result = rand1 - rand2;
+        tryMe = the_result;
         //result.setText(String.valueOf(the_result)); //comment out
 
     }
 
 
     private void tomultiply(int rand1, int rand2) {
-        int the_result=rand1 * rand2;
-        textView2.setText("X");
-        tryMe=the_result;
+        int the_result = rand1 * rand2;
+        textView2.setText(" X ");
+        tryMe = the_result;
         //result.setText(String.valueOf(the_result)); //comment out
 
     }
@@ -226,45 +216,50 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
     private void toadd(int rand1, int rand2) {
 
-        int the_result=rand1 + rand2;
-        tryMe=the_result;
+        int the_result = rand1 + rand2;
+        tryMe = the_result;
         //result.setText(String.valueOf(the_result)); //comment out
 
     }
 
 
-
-
-
     public void validateAnswer() {
 
         //if(enter_num.getText().toString().length()==0){// make sure that the editext is not empty
-            //Toast.makeText(this,"enter number",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this,"enter number",Toast.LENGTH_LONG).show();
         //}
         //else {
 
 
+        //int my_input=Integer.parseInt(enter_num.getText().toString());  // this part is to get the user input
 
-            //int my_input=Integer.parseInt(enter_num.getText().toString());  // this part is to get the user input
 
-
-            if (input==tryMe){
-                Final_result+=20;
-                Toast.makeText(this,"RESULT :"+Final_result,Toast.LENGTH_LONG).show();  //display the result
-
+        if (input == tryMe) {
+            if(numOfquestions == 5) {
+                Final_result += 20;
+                Toast.makeText(this, "RESULT :" + Final_result, Toast.LENGTH_LONG).show();  //display the result
             }
-            else {
-                Toast.makeText(this,enter_num.getText().toString()+ "not equal" +result.getText().toString() ,Toast.LENGTH_LONG).show();
-
+            else if (numOfquestions == 10){
+                int scoreValue = 100/numOfquestions;
+                Final_result += scoreValue;
+                Toast.makeText(this, "RESULT: " + Final_result, Toast.LENGTH_SHORT).show();
             }
-
-
-            enter_num.getText().clear();//clear the editText
-            result.setText("");// clears input
-            tocall();// goback and call the call method
+            else{
+                int scoreValue = 100/numOfquestions;
+                Final_result += scoreValue;
+                Toast.makeText(this, "RESULT: " + Final_result, Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, enter_num.getText().toString() + " not equal " + result.getText().toString(), Toast.LENGTH_LONG).show();
 
         }
 
+
+        enter_num.getText().clear();//clear the editText
+        result.setText("");// clears input
+        tocall();// goback and call the call method
+
+    }
 
 
     // method to convert string number to integer
@@ -352,18 +347,28 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
                 return 38;
             case "thirty nine":
                 return 39;
-            case "fourty":
+            case "forty":
                 return 40;
-            case "fourty one":
+            case "forty one":
                 return 41;
-            case "fourty two":
+            case "forty two":
                 return 42;
-            case "fourty three":
+            case "forty three":
                 return 43;
-            case "fourty four":
+            case "forty four":
                 return 44;
-            case "fourty five":
+            case "forty five":
                 return 45;
+            case "forty six":
+                return 46;
+            case "forty seven":
+                return 47;
+            case "forty eight":
+                return 48;
+            case "forty nine":
+                return 49;
+            case "fifty":
+                return 50;
 
         }
         return -1;

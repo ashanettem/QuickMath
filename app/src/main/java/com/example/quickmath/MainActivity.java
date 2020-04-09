@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     EditText emailTxt;
     EditText passTxt;
     Button loginBtn;
-    TextView regLnk;
+    TextView regLnk, adminRegLnk;
 
     SharedPreferences sp;
 
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
         passTxt = findViewById(R.id.uPass);
         loginBtn = findViewById(R.id.uLogin);
         regLnk = findViewById(R.id.uReg);
+        adminRegLnk = findViewById(R.id.adminReg);
+
 
         sp = getSharedPreferences("registrationLog", 0);
 
@@ -59,12 +61,20 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
+        adminRegLnk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(v.getContext(), adminReg.class);
+                startActivity(i);
+            }
+        });
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CollectionReference usersDB = db.collection("Students");
+                CollectionReference usersDB = db.collection("Users");
 
                 String user = emailTxt.getText().toString();
                 String pass = passTxt.getText().toString();
@@ -76,15 +86,25 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                         for (QueryDocumentSnapshot documentSnapshot: queryDocumentSnapshots){
-                            Student currentUser = documentSnapshot.toObject(Student.class);
+                            User currentUser = documentSnapshot.toObject(User.class);
 
                             String email = currentUser.getEmail();
                             String password = currentUser.getPassword();
 
                             if (email.equals(user) && password.equals(pass)){
+                                if (currentUser.getRole().equals("Student")){
                                 Intent intent = new Intent(view.getContext(),choices.class);
                                 intent.putExtra("User" , email);
                                 startActivity(intent);
+                                Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                }
+                                else if (currentUser.getRole().equals("Teacher")){
+                                    Intent intent = new Intent(view.getContext(),adminDash.class);
+                                    intent.putExtra("User" , email);
+                                    startActivity(intent);
+                                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                }
+
                             }
                             else{
                                 Toast.makeText(MainActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
