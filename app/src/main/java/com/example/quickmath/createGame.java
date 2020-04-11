@@ -15,7 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Collection;
 
-public class createExam extends AppCompatActivity {
+public class createGame extends AppCompatActivity {
 
     RadioButton q5, q10, q15, qAdd, qSub, qMutl, qDiv;
     Button submit, back;
@@ -23,12 +23,12 @@ public class createExam extends AppCompatActivity {
     
 
     FirebaseFirestore db;
-    CollectionReference exams;
+    CollectionReference Games;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_exam);
+        setContentView(R.layout.activity_create_game);
 
         q5 = findViewById(R.id.q5);
         q10 = findViewById(R.id.q10);
@@ -43,9 +43,9 @@ public class createExam extends AppCompatActivity {
 
 
         db = FirebaseFirestore.getInstance();
-        exams = db.collection("Exams");
+        Games = db.collection("Games");
         
-        submit.setOnClickListener(this::CreateExam);
+        submit.setOnClickListener(this::CreateGame);
         back.setOnClickListener(this::returnToDash);
     }
 
@@ -54,60 +54,60 @@ public class createExam extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void CreateExam(View view) {
+    private void CreateGame(View view) {
 
-        Exam newExam = new Exam();
-        newExam.setNumOfQuestions(5);
+        Game newGame = new Game();
+        newGame.setNumOfQuestions(5);
         if (q5.isChecked()) {
             if (qAdd.isChecked()) {
-                newExam.setType("addition");
+                newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newExam.setType("substract");
+                newGame.setType("substract");
             } else if (qMutl.isChecked()) {
-                newExam.setType("multiply");
+                newGame.setType("multiply");
             } else if (qDiv.isChecked()) {
-                newExam.setType("divide");
+                newGame.setType("divide");
             } else {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
-            newExam.setState("incomplete");
-            newExam.setChild(childEmail.getText().toString());
-            exams.add(newExam);
-            Toast.makeText(this, "Exam Successfully Created.", Toast.LENGTH_SHORT).show();
+            newGame.setState("incomplete");
+            newGame.setChild(childEmail.getText().toString());
+            Games.add(newGame);
+            Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else if (q10.isChecked()) {
-            newExam.setNumOfQuestions(10);
+            newGame.setNumOfQuestions(10);
             if (qAdd.isChecked()) {
-                newExam.setType("addition");
+                newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newExam.setType("substract");
+                newGame.setType("substract");
             } else if (qMutl.isChecked()) {
-                newExam.setType("multiply");
+                newGame.setType("multiply");
             } else if (qDiv.isChecked()) {
-                newExam.setType("divide");
+                newGame.setType("divide");
             } else {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
-            newExam.setState("incomplete");
-            newExam.setChild(childEmail.getText().toString());
-            exams.add(newExam);
-            Toast.makeText(this, "Exam Successfully Created.", Toast.LENGTH_SHORT).show();
+            newGame.setState("incomplete");
+            newGame.setChild(childEmail.getText().toString());
+            Games.add(newGame);
+            Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else if (q15.isChecked()) {
-            newExam.setNumOfQuestions(15);
+            newGame.setNumOfQuestions(15);
             if (qAdd.isChecked()) {
-                newExam.setType("addition");
+                newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newExam.setType("substract");
+                newGame.setType("substract");
             } else if (qMutl.isChecked()) {
-                newExam.setType("multiply");
+                newGame.setType("multiply");
             } else if (qDiv.isChecked()) {
-                newExam.setType("divide");
+                newGame.setType("divide");
             } else {
                 Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
             }
-            newExam.setState("incomplete");
-            newExam.setChild(childEmail.getText().toString());
-            exams.add(newExam);
-            Toast.makeText(this, "Exam Successfully Created.", Toast.LENGTH_SHORT).show();
+            newGame.setState("incomplete");
+            newGame.setChild(childEmail.getText().toString());
+            Games.add(newGame);
+            Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
         }

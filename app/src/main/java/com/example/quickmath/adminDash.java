@@ -54,7 +54,7 @@ public class adminDash extends AppCompatActivity {
     }
 
     private void createX(View view) {
-        Intent i = new Intent(this, createExam.class);
+        Intent i = new Intent(this, createGame.class);
         i.putExtra("User", user);
         startActivity(i);
 

@@ -91,14 +91,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="201dp"
+        android:layout_width="0dp"
         android:layout_height="271dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.084"
-        app:srcCompat="@drawable/imageedit_9_7083440044" />
+        app:srcCompat="@drawable/home_logo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

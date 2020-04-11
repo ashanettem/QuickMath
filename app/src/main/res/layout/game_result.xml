@@ -12,7 +12,7 @@
         android:textColor="@color/common_google_signin_btn_text_dark"/>
 
     <TextView
-        android:id="@+id/tvExamType"
+        android:id="@+id/tvGameType"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"

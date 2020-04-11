@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-public class allcalculation extends AppCompatActivity implements TextToSpeech.OnInitListener {
+public class allcalculation extends AppCompatActivity  {
     private TextView num11;
     private TextView num12;
     private TextView result;
@@ -38,10 +38,6 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
     String amount;
     int numOfquestions;
     SharedPreferences sp;
-
-    @Override
-    public void onInit(int i) {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,55 +64,14 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         tocall();
 
 
-        inputButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.ENGLISH);
-                startActivityForResult(intent, 10);
-
-            }
-        });
-
-
+        inputButton.setOnClickListener(this::calulate);
     }
 
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK && data != null) {
-            switch (requestCode) {
-                case 10:
-                    int intFound = getNumberFromResult(data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS));
-                    if (intFound != -1) {
-                        input = intFound;
-                        result.setText(String.valueOf(intFound));
-                        validateAnswer();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Sorry, I didn't catch that! Please try again", Toast.LENGTH_LONG).show();
-                    }
-                    break;
-
-            }
-        } else {
-            Toast.makeText(getApplicationContext(), "Failed to recognize speech!", Toast.LENGTH_LONG).show();
-        }
+    private void calulate(View view) {
+        tocall();
     }
 
-
-    //return the
-    private int getNumberFromResult(ArrayList<String> results) {
-        for (String str : results) {
-            if (getIntNumberFromText(str) != -1) {
-                return getIntNumberFromText(str);
-            }
-        }
-        return -1;
-    }
-
+    
     private void tocall() {
         count++;
 
@@ -127,12 +82,12 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
         } else {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference examDB = db.collection("Exams");
+            CollectionReference gamesDB = db.collection("Games");
 
-            Exam currentExam = new Exam(value, numOfquestions, email, Final_result);
-            currentExam.setState("complete");
-            currentExam.setChild(email);
-            examDB.add(currentExam);
+            Game currentGame = new Game(value, numOfquestions, email, Final_result);
+            currentGame.setState("complete");
+            currentGame.setChild(email);
+            gamesDB.add(currentGame);
 
             Intent go_back_to_first_page = new Intent(this, choices.class);
             startActivity(go_back_to_first_page);
@@ -142,7 +97,7 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
 
 
     private void to_get_random() {
-        int rand1 = new Random().nextInt(10);// random number between 0 to 5
+        int rand1 = new Random().nextInt(100);// random number between 0 to 5
         int rand2 = new Random().nextInt(5);
 
 
@@ -260,121 +215,5 @@ public class allcalculation extends AppCompatActivity implements TextToSpeech.On
         tocall();// goback and call the call method
 
     }
-
-
-    // method to convert string number to integer
-    private int getIntNumberFromText(String strNum) {
-
-        //int num = Integer.parseInt(strNum);
-        switch (strNum) {
-            case "zero":
-                return 0;
-            case "one":
-                return 1;
-            case "two":
-                return 2;
-            case "three":
-                return 3;
-            case "four":
-                return 4;
-            case "five":
-                return 5;
-            case "six":
-                return 6;
-            case "seven":
-                return 7;
-            case "eight":
-                return 8;
-            case "nine":
-                return 9;
-            case "ten":
-                return 10;
-            case "eleven":
-                return 11;
-            case "twelve":
-                return 12;
-            case "thirteen":
-                return 13;
-            case "fourteen":
-                return 14;
-            case "fifteen":
-                return 15;
-            case "sixteen":
-                return 16;
-            case "seventeen":
-                return 17;
-            case "eighteen":
-                return 18;
-            case "nineteen":
-                return 19;
-            case "twenty":
-                return 20;
-            case "twenty one":
-                return 21;
-            case "twenty two":
-                return 22;
-            case "twenty three":
-                return 23;
-            case "twenty four":
-                return 24;
-            case "twenty five":
-                return 25;
-            case "twenty six":
-                return 26;
-            case "twenty seven":
-                return 27;
-            case "twenty eight":
-                return 28;
-            case "twenty nine":
-                return 29;
-            case "thirty":
-                return 30;
-            case "thirty one":
-                return 31;
-            case "thirty two":
-                return 32;
-            case "thirty three":
-                return 33;
-            case "thirty four":
-                return 34;
-            case "thirty five":
-                return 35;
-            case "thirty six":
-                return 36;
-            case "thirty seven":
-                return 37;
-            case "thirty eight":
-                return 38;
-            case "thirty nine":
-                return 39;
-            case "forty":
-                return 40;
-            case "forty one":
-                return 41;
-            case "forty two":
-                return 42;
-            case "forty three":
-                return 43;
-            case "forty four":
-                return 44;
-            case "forty five":
-                return 45;
-            case "forty six":
-                return 46;
-            case "forty seven":
-                return 47;
-            case "forty eight":
-                return 48;
-            case "forty nine":
-                return 49;
-            case "fifty":
-                return 50;
-
-        }
-        return -1;
-
-        //return num;
-    }
-
 }
 

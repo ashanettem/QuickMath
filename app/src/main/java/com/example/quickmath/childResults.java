@@ -1,19 +1,13 @@
 package com.example.quickmath;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,8 +26,8 @@ public class childResults extends AppCompatActivity {
     Parent currentUser;
     String child;
     ListView examList;
-    List<Exam> childExams;
-    ExamAdapter examAdapter;
+    List<Game> childExams;
+    GameAdapter gameAdapter;
 
 
 
@@ -44,7 +38,7 @@ public class childResults extends AppCompatActivity {
         examList = findViewById(R.id.examList);
 
         childExams = new ArrayList<>();
-        examAdapter = new ExamAdapter(this, R.layout.exam_result, childExams);
+        gameAdapter = new GameAdapter(this, R.layout.game_result, childExams);
         returnHome = findViewById(R.id.btnHome);
         btnGraph = findViewById(R.id.btnGraph);
 
@@ -86,8 +80,8 @@ public class childResults extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
 
-                    childExams.add(documentSnapshot.toObject(Exam.class));
-                    examList.setAdapter(examAdapter);
+                    childExams.add(documentSnapshot.toObject(Game.class));
+                    examList.setAdapter(gameAdapter);
 
                 }
             }

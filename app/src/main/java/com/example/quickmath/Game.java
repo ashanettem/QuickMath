@@ -2,7 +2,7 @@ package com.example.quickmath;
 
 import com.google.firebase.firestore.Exclude;
 
-public class Exam {
+public class Game {
     private String type;
     private int numOfQuestions;
     private int score;
@@ -10,17 +10,17 @@ public class Exam {
     private String parent;
     private String state;
 
-    public Exam() {
+    public Game() {
     }
 
-    public Exam(String type, int numOfQuestions, String child, int score){
+    public Game(String type, int numOfQuestions, String child, int score){
         this.type = type;
         this.child = child;
         this.numOfQuestions =numOfQuestions;
         this.score = score;
     }
 
-    public Exam(String type, int numOfQuestions, String child, String state) {
+    public Game(String type, int numOfQuestions, String child, String state) {
         this.type = type;
         this.numOfQuestions = numOfQuestions;
         this.child = child;
