@@ -35,7 +35,7 @@ public class childResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_results);
-        examList = findViewById(R.id.examList);
+        examList = findViewById(R.id.gameList);
 
         childExams = new ArrayList<>();
         gameAdapter = new GameAdapter(this, R.layout.game_result, childExams);
@@ -52,7 +52,7 @@ public class childResults extends AppCompatActivity {
 
 
     private void backToDash(View view) {
-        Intent i = new Intent(this, adminDash.class);
+        Intent i = new Intent(this, parentDash.class);
         startActivity(i);
     }
 

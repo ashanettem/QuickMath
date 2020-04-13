@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -14,11 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class regActivity extends AppCompatActivity {
 
-    EditText regEmail;
     EditText regPass;
     EditText regFName;
     EditText regLName;
-    EditText regAge;
+    EditText regUName;
     Button regBtn;
 
     SharedPreferences sp;
@@ -27,14 +28,17 @@ public class regActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_reg);
 
 
-        regEmail = findViewById(R.id.eRegTxt);
+        regUName = findViewById(R.id.uNameRegTxt);
         regPass = findViewById(R.id.pRegTxt);
         regFName = findViewById(R.id.nameTxt);
         regLName = findViewById(R.id.lNameTxt);
-        regAge = findViewById(R.id.ageTxt);
         regBtn = findViewById(R.id.btnReg);
 
 
@@ -42,60 +46,33 @@ public class regActivity extends AppCompatActivity {
 
     }
 
-    private void register(View view){
+    private void register(View view) {
 
         String firstName = regFName.getText().toString().trim();
         String lastName = regLName.getText().toString().trim();
         String password = regPass.getText().toString().trim();
-        String email = regEmail.getText().toString().trim();
-        int age = Integer.parseInt(regAge.getText().toString().trim());
+        String username = regUName.getText().toString().trim();
 
 
-        if(firstName.isEmpty()|| firstName.length() > 12 ){
 
-            Toast.makeText(regActivity.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
-
+        if (firstName.isEmpty() == true && lastName.isEmpty() == true && password.isEmpty() == true && username.isEmpty() == true) {
+            Toast.makeText(this, "Please Fill in All Fields", Toast.LENGTH_SHORT).show();
         }
-
-        if(lastName.isEmpty() || lastName.length() > 12 ){
-
-            Toast.makeText(regActivity.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
-
-        }
-
-
-        if(email.isEmpty()){
-            Toast.makeText(regActivity.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
-
-
-        }
-
-        if(password.isEmpty() || password.length() > 16){
-            Toast.makeText(regActivity.this, "Invalid Input, Password must be between 8 - 16 characters", Toast.LENGTH_SHORT).show();
-
-
-        }
-
-        if(age == 0){
-            Toast.makeText(regActivity.this, "Invalid Input, Date of Birth must be between 8 characters in numerical format", Toast.LENGTH_SHORT).show();
-
-
-        }
-
         else {
 
-            Child newStudent  = new Child(firstName, lastName, email ,password, "Student", age);
+                if (firstName.length() < 3){
 
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            db.collection("Users").add(newStudent);
+                }
 
-            Intent intent;
-            intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
+                Child newChild = new Child(firstName, lastName, username, password, "Child");
 
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Users").add(newChild);
+
+                Intent intent;
+                intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
 
         }
-
     }
-
 }

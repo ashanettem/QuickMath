@@ -2,7 +2,7 @@
     <string name="app_name">QuickMath</string>
     <string name="add">add</string>
     <string name="multiply">multiply</string>
-    <string name="substract">SUBSTRACT</string>
+    <string name="subtract">SUBTRACT</string>
     <string name="divide">divide</string>
     <string name="_5_questions">5 Questions</string>
     <string name="_10_questions">10 Questions</string>
@@ -33,7 +33,7 @@
     <string name="login">Login</string>
     <string name="sign_up">Sign-Up</string>
     <string name="teacher_registration">Teacher Registration</string>
-    <string name="cRegEmail">Email</string>
+    <string name="cUName">Username</string>
     <string name="cRegPassword">Password</string>
     <string name="cRegFirst_name">First Name</string>
     <string name="cRegLast_name">Last Name</string>
@@ -45,4 +45,9 @@
     <string name="result">Result:</string>
     <string name="graph">GRAPH</string>
     <string name="cResHome">HOME</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="lbl_child_registration">Child Registration</string>
+    <string name="lbl_parent_registration">Parent Registration</string>
+    <string name="child_registration">Child Registration</string>
+    <string name="parent_registration">Parent Registration</string>
 </resources>

@@ -7,13 +7,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class adminReg extends AppCompatActivity {
+public class parentReg extends AppCompatActivity {
 
     EditText parEmail;
     EditText parPassword;
@@ -28,6 +30,10 @@ public class adminReg extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_admin_reg);
 
         parEmail = findViewById(R.id.parRegEmail);
@@ -54,31 +60,31 @@ public class adminReg extends AppCompatActivity {
 
         if(firstName== "" || firstName.length() < 3 || firstName.length() > 12 ){
 
-            Toast.makeText(adminReg.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentReg.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
 
         }
 
         if(lastName== "" || lastName.length() < 3 || lastName.length() > 12 ){
 
-            Toast.makeText(adminReg.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentReg.this, "Invalid Input, name too short or too long", Toast.LENGTH_SHORT).show();
 
         }
 
 
         if(email == ""){
-            Toast.makeText(adminReg.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentReg.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
 
 
         }
 
         if(password == "" || password.length() < 8 || password.length() > 16){
-            Toast.makeText(adminReg.this, "Invalid Input, Password must be between 8 - 16 characters", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentReg.this, "Invalid Input, Password must be between 8 - 16 characters", Toast.LENGTH_SHORT).show();
 
 
         }
 
         if(childE == ""){
-            Toast.makeText(adminReg.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
+            Toast.makeText(parentReg.this, "Invalid Input, Email Syntax Incorrect", Toast.LENGTH_SHORT).show();
 
 
         }

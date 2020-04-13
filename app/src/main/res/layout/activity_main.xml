@@ -1,104 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/ic_launcher_background"
-
+    android:padding="8dp"
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:id="@+id/uEmail"
-        android:layout_width="351dp"
-        android:layout_height="58dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="275dp"
+        app:srcCompat="@drawable/home_logo" />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp">
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/uEmail"
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textColorHint="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        android:textColorHint="@color/common_google_signin_btn_text_dark_default"/>
 
-    <EditText
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp">
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/uPass"
-        android:layout_width="351dp"
-        android:layout_height="58dp"
-
+        android:layout_width="350dp"
+        android:layout_height="60dp"
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textColorHint="@color/common_google_signin_btn_text_dark_default"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.446"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        android:textColorHint="@color/common_google_signin_btn_text_dark_default"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/uLogin"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
         android:text="@string/login"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.736" />
+        android:textSize="25sp"
+        android:layout_marginTop="5dp"
+        />
 
-    <TextView
+    <Button
         android:id="@+id/uReg"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="0dp"
-        android:text="@string/sign_up"
-        android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="24sp"
+        android:text="@string/child_registration"
+        android:textColor="@color/colorPrimary"
+        android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.826" />
+        android:layout_marginTop="5dp"
+         />
 
 
-    <TextView
-        android:id="@+id/adminReg"
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/parentReg"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="52dp"
-        android:text="@string/teacher_registration"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/uReg" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="271dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084"
-        app:srcCompat="@drawable/home_logo" />
+        android:textColor="@color/colorPrimary"
+        android:text="@string/parent_registration"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</LinearLayout>

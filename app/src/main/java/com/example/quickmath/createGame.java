@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -12,8 +14,6 @@ import android.widget.Toast;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.Collection;
 
 public class createGame extends AppCompatActivity {
 
@@ -28,6 +28,10 @@ public class createGame extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_create_game);
 
         q5 = findViewById(R.id.q5);
@@ -50,7 +54,7 @@ public class createGame extends AppCompatActivity {
     }
 
     private void returnToDash(View view) {
-        Intent i = new Intent(this, adminDash.class);
+        Intent i = new Intent(this, parentDash.class);
         startActivity(i);
     }
 
@@ -62,7 +66,7 @@ public class createGame extends AppCompatActivity {
             if (qAdd.isChecked()) {
                 newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newGame.setType("substract");
+                newGame.setType("subtract");
             } else if (qMutl.isChecked()) {
                 newGame.setType("multiply");
             } else if (qDiv.isChecked()) {
@@ -79,7 +83,7 @@ public class createGame extends AppCompatActivity {
             if (qAdd.isChecked()) {
                 newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newGame.setType("substract");
+                newGame.setType("subtract");
             } else if (qMutl.isChecked()) {
                 newGame.setType("multiply");
             } else if (qDiv.isChecked()) {
@@ -96,7 +100,7 @@ public class createGame extends AppCompatActivity {
             if (qAdd.isChecked()) {
                 newGame.setType("addition");
             } else if (qSub.isChecked()) {
-                newGame.setType("substract");
+                newGame.setType("subtract");
             } else if (qMutl.isChecked()) {
                 newGame.setType("multiply");
             } else if (qDiv.isChecked()) {

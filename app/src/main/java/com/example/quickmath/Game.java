@@ -16,15 +16,16 @@ public class Game {
     public Game(String type, int numOfQuestions, String child, int score){
         this.type = type;
         this.child = child;
-        this.numOfQuestions =numOfQuestions;
+        this.numOfQuestions = numOfQuestions;
         this.score = score;
     }
 
-    public Game(String type, int numOfQuestions, String child, String state) {
+    public Game(String type, int numOfQuestions, String child, String state, int score) {
         this.type = type;
         this.numOfQuestions = numOfQuestions;
         this.child = child;
         this.state = state;
+        this.score = score;
     }
 
 

@@ -2,20 +2,25 @@ package com.example.quickmath;
 
 public class Child extends User {
 
-     private int age;
+    private String username;
 
     public Child() {    }
 
-    public Child(String firstName, String lastName, String email, String password, String role, int age) {
-        super(firstName, lastName, email, password, role);
-        this.age = age;
+    public Child(String firstName, String lastName, String username, String password, String role) {
+        this.setFirstName(firstName);
+        this.setLastName(lastName);
+        this.username = username;
+        this.setPassword(password);
+        this.setRole(role);
+
+
     }
 
-    public int getAge() {
-        return age;
+    public String getUsername() {
+        return username;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

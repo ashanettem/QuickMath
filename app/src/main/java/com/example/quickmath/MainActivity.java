@@ -15,9 +15,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -26,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     EditText emailTxt;
     EditText passTxt;
-    Button loginBtn;
-    TextView regLnk, adminRegLnk;
+    Button loginBtn, childRegBtn, parentRegBtn;
+
 
     SharedPreferences sp;
 
@@ -47,14 +45,14 @@ public class MainActivity extends AppCompatActivity {
         emailTxt = findViewById(R.id.uEmail);
         passTxt = findViewById(R.id.uPass);
         loginBtn = findViewById(R.id.uLogin);
-        regLnk = findViewById(R.id.uReg);
-        adminRegLnk = findViewById(R.id.adminReg);
+        childRegBtn = findViewById(R.id.uReg);
+        parentRegBtn = findViewById(R.id.parentReg);
 
 
         sp = getSharedPreferences("registrationLog", 0);
 
 
-        regLnk.setOnClickListener(new View.OnClickListener() {
+        childRegBtn.setOnClickListener(new View.OnClickListener() {
                                       @Override
                                       public void onClick(View v) {
 
@@ -67,10 +65,10 @@ public class MainActivity extends AppCompatActivity {
 
         );
 
-        adminRegLnk.setOnClickListener(new View.OnClickListener() {
+        parentRegBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(v.getContext(), adminReg.class);
+                Intent i = new Intent(v.getContext(), parentReg.class);
                 startActivity(i);
             }
         });
@@ -98,22 +96,25 @@ public class MainActivity extends AppCompatActivity {
                             String password = currentUser.getPassword();
 
                             if (email.equals(user) && password.equals(pass)){
-                                if (currentUser.getRole().equals("Student")){
+                                if (currentUser.getRole().equals("Child")){
                                 Intent intent = new Intent(view.getContext(),choices.class);
                                 intent.putExtra("User" , email);
                                 startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 }
                                 else if (currentUser.getRole().equals("Teacher")){
-                                    Intent intent = new Intent(view.getContext(),adminDash.class);
+                                    Intent intent = new Intent(view.getContext(), parentDash.class);
                                     intent.putExtra("User" , email);
                                     startActivity(intent);
                                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 }
+                                else{
+                                    Toast.makeText(MainActivity.this, "Please Sign Up For Access", Toast.LENGTH_LONG).show();
+                                }
 
                             }
                             else{
-                                Toast.makeText(MainActivity.this, "Please Try Again", Toast.LENGTH_LONG).show();
+                                Toast.makeText(MainActivity.this, "Incorrect Username or Password", Toast.LENGTH_LONG).show();
                             }
                         }
                     }

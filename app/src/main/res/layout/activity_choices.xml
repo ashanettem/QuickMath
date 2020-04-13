@@ -76,7 +76,7 @@
                 android:layout_height="58dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
-                android:text="@string/substract"
+                android:text="@string/subtract"
                 android:textColor="@color/colorPrimary"
                 android:textSize="20sp" />
 

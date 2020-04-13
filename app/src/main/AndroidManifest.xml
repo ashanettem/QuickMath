@@ -21,9 +21,9 @@
         <activity android:name=".regActivity" />
         <activity android:name=".allcalculation" />
         <activity android:name=".choices" />
-        <activity android:name=".adminReg"></activity>
+        <activity android:name=".parentReg"></activity>
         <activity android:name=".createGame"></activity>
-        <activity android:name=".adminDash"></activity>
+        <activity android:name=".parentDash"></activity>
         <activity android:name=".childResults"></activity>
     </application>
 

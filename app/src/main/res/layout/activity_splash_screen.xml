@@ -15,5 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/Splash_screen_purple_font" />
+        app:srcCompat="@mipmap/splash_screen" />
 </androidx.constraintlayout.widget.ConstraintLayout>

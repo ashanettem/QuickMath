@@ -6,11 +6,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,27 +25,30 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
-public class allcalculation extends AppCompatActivity  {
+public class allcalculation extends AppCompatActivity {
     private TextView num11;
     private TextView num12;
     private TextView result;
     private TextView num_of_question;
     private EditText enter_num;
-    private TextView textView2;
+    private TextView tvSign;
     private Button inputButton;
-    private int input;
     int count = 0;
     int tryMe = 0;
     int Final_result = 0;
     String email;
     String value;
-    String amount;
     int numOfquestions;
     SharedPreferences sp;
+    private ImageView gc, rx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bar
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_allcalculation);
 
 
@@ -52,13 +59,15 @@ public class allcalculation extends AppCompatActivity  {
         numOfquestions = sp.getInt("numOfQuestions", 5);
 
 
-        inputButton = (Button) findViewById(R.id.button);
+        inputButton = findViewById(R.id.btnInput);
         result = findViewById(R.id.result);
         num11 = findViewById(R.id.num_one);
         num12 = findViewById(R.id.num_two);
-        num_of_question = findViewById(R.id.textView5);
-        enter_num = findViewById(R.id.editText);
-        textView2 = findViewById(R.id.textView2);
+        num_of_question = findViewById(R.id.tvNumOfQuestions);
+        enter_num = findViewById(R.id.etInput);
+        tvSign = findViewById(R.id.tvSign);
+        gc = findViewById(R.id.greenCheck);
+        rx = findViewById(R.id.redX);
 
 
         tocall();
@@ -68,16 +77,20 @@ public class allcalculation extends AppCompatActivity  {
     }
 
     private void calulate(View view) {
-        tocall();
+        validateAnswer();
     }
 
-    
+
     private void tocall() {
+        gc.setVisibility(View.INVISIBLE);
+        rx.setVisibility(View.INVISIBLE);
+        enter_num.setText("");//clear the editText
+        result.setText("");// clears input
         count++;
 
         if (count <= numOfquestions) { // how many question you want to get
             to_get_random();
-            num_of_question.setText(count + " /" + numOfquestions);
+            num_of_question.setText(count + "/" + numOfquestions);
 
 
         } else {
@@ -91,7 +104,7 @@ public class allcalculation extends AppCompatActivity  {
 
             Intent go_back_to_first_page = new Intent(this, choices.class);
             startActivity(go_back_to_first_page);
-            //Toast.makeText(this,"Sorry you are done for the day  ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Complete",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -118,8 +131,8 @@ public class allcalculation extends AppCompatActivity  {
             } else if (mychoice.equals("multiply")) {
                 tomultiply(rand1, rand2);
 
-            } else if (mychoice.equals("substract")) {
-                tosubstract(rand1, rand2);
+            } else if (mychoice.equals("subtract")) {
+                tosubtract(rand1, rand2);
 
             } else if (mychoice.equals("divide")) {
                 todivide(rand1, rand2);
@@ -137,7 +150,7 @@ public class allcalculation extends AppCompatActivity  {
 
 
     private void todivide(int rand1, int rand2) {
-        textView2.setText(" / ");  // this is for the sign
+        tvSign.setText(" / ");  // this is for the sign
         if (rand1 % rand2 != 0) {
             to_get_random();
         } else {
@@ -149,9 +162,9 @@ public class allcalculation extends AppCompatActivity  {
     }
 
 
-    private void tosubstract(int rand1, int rand2) {
+    private void tosubtract(int rand1, int rand2) {
 
-        textView2.setText(" - ");
+        tvSign.setText(" - ");
 
         int the_result = rand1 - rand2;
         tryMe = the_result;
@@ -162,7 +175,7 @@ public class allcalculation extends AppCompatActivity  {
 
     private void tomultiply(int rand1, int rand2) {
         int the_result = rand1 * rand2;
-        textView2.setText(" X ");
+        tvSign.setText(" X ");
         tryMe = the_result;
         //result.setText(String.valueOf(the_result)); //comment out
 
@@ -180,40 +193,45 @@ public class allcalculation extends AppCompatActivity  {
 
     public void validateAnswer() {
 
-        //if(enter_num.getText().toString().length()==0){// make sure that the editext is not empty
-        //Toast.makeText(this,"enter number",Toast.LENGTH_LONG).show();
-        //}
-        //else {
-
-
-        //int my_input=Integer.parseInt(enter_num.getText().toString());  // this part is to get the user input
-
-
-        if (input == tryMe) {
-            if(numOfquestions == 5) {
-                Final_result += 20;
-                Toast.makeText(this, "RESULT :" + Final_result, Toast.LENGTH_LONG).show();  //display the result
-            }
-            else if (numOfquestions == 10){
-                int scoreValue = 100/numOfquestions;
-                Final_result += scoreValue;
-                Toast.makeText(this, "RESULT: " + Final_result, Toast.LENGTH_SHORT).show();
-            }
-            else{
-                int scoreValue = 100/numOfquestions;
-                Final_result += scoreValue;
-                Toast.makeText(this, "RESULT: " + Final_result, Toast.LENGTH_SHORT).show();
-            }
+        if (enter_num.getText().toString().length() == 0) {// make sure that the editext is not empty
+            Toast.makeText(this, "enter number", Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, enter_num.getText().toString() + " not equal " + result.getText().toString(), Toast.LENGTH_LONG).show();
+
+
+            int input = Integer.parseInt(enter_num.getText().toString().trim());  // this part is to get the user input
+
+
+            if (input == tryMe) {
+                if (numOfquestions == 5) {
+                    Final_result += 20;
+                    Toast.makeText(this, "Correct!", Toast.LENGTH_LONG).show();//display the result
+                    gc.setVisibility(View.VISIBLE);
+                } else if (numOfquestions == 10) {
+                    int scoreValue = 100 / numOfquestions;
+                    Final_result += scoreValue;
+                    Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                    gc.setVisibility(View.VISIBLE);
+                } else {
+                    int scoreValue = 100 / numOfquestions;
+                    Final_result += scoreValue;
+                    Toast.makeText(this, "Correct!", Toast.LENGTH_SHORT).show();
+                    gc.setVisibility(View.VISIBLE);
+                }
+            } else {
+                rx.setVisibility(View.VISIBLE);
+            }
+
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    tocall();// goback and call the call method
+                }
+            }, 2000);
+
 
         }
-
-
-        enter_num.getText().clear();//clear the editText
-        result.setText("");// clears input
-        tocall();// goback and call the call method
-
     }
+
 }
 
