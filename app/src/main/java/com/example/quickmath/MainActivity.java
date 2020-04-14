@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 }
-                                else if (currentUser.getRole().equals("Teacher")){
+                                else if (currentUser.getRole().equals("Parent")){
                                     Intent intent = new Intent(view.getContext(), parentDash.class);
                                     intent.putExtra("User" , email);
                                     startActivity(intent);

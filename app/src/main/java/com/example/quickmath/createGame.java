@@ -76,6 +76,7 @@ public class createGame extends AppCompatActivity {
             }
             newGame.setState("incomplete");
             newGame.setChild(childEmail.getText().toString());
+            newGame.setScore(0);
             Games.add(newGame);
             Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else if (q10.isChecked()) {
@@ -93,6 +94,7 @@ public class createGame extends AppCompatActivity {
             }
             newGame.setState("incomplete");
             newGame.setChild(childEmail.getText().toString());
+            newGame.setScore(0);
             Games.add(newGame);
             Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else if (q15.isChecked()) {
@@ -110,6 +112,7 @@ public class createGame extends AppCompatActivity {
             }
             newGame.setState("incomplete");
             newGame.setChild(childEmail.getText().toString());
+            newGame.setScore(0);
             Games.add(newGame);
             Toast.makeText(this, "Game Successfully Created.", Toast.LENGTH_SHORT).show();
         } else {

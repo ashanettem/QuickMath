@@ -91,7 +91,7 @@ public class parentReg extends AppCompatActivity {
 
         else {
 
-            User Parent = new Parent( firstName, lastName, email,  password,"Teacher", childE);
+            User Parent = new Parent( firstName, lastName, email,  password,"Parent", childE);
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             db.collection("Users").add(Parent);
