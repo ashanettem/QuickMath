@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/ic_launcher_background"
-    android:padding="8dp"
+    android:padding="15dp"
     tools:context=".MainActivity">
 
 
@@ -14,18 +14,19 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="275dp"
-        app:srcCompat="@drawable/home_logo" />
+        app:srcCompat="@drawable/home_logo"
+        android:layout_marginTop="10dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="75dp">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/uEmail"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
@@ -34,15 +35,15 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="15dp">
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/uPass"
-        android:layout_width="350dp"
-        android:layout_height="60dp"
-        android:ems="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
         android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
@@ -54,10 +55,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/login"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#8e69ad"
+        android:background="#FFFFFF"
         android:textStyle="bold"
-        android:textSize="25sp"
-        android:layout_marginTop="5dp"
+        android:textSize="30sp"
+        android:layout_marginTop="75dp"
         />
 
     <Button
@@ -65,10 +67,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/child_registration"
-        android:textColor="@color/colorPrimary"
-        android:textSize="25sp"
+        android:textColor="#8e69ad"
+        android:background="#FFFFFF"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
          />
 
 
@@ -76,11 +79,12 @@
         android:id="@+id/parentReg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimary"
+        android:textColor="#8e69ad"
+        android:background="#FFFFFF"
         android:text="@string/parent_registration"
-        android:textSize="25sp"
+        android:textSize="30sp"
         android:textStyle="bold"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="15dp"/>
 
 
 

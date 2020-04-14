@@ -60,9 +60,6 @@ public class regActivity extends AppCompatActivity {
         }
         else {
 
-                if (firstName.length() < 3){
-
-                }
 
                 Child newChild = new Child(firstName, lastName, username, password, "Child");
 

@@ -9,6 +9,7 @@ public class Child extends User {
     public Child(String firstName, String lastName, String username, String password, String role) {
         this.setFirstName(firstName);
         this.setLastName(lastName);
+        this.setEmail(username);
         this.username = username;
         this.setPassword(password);
         this.setRole(role);

@@ -24,7 +24,6 @@ public class childResults extends AppCompatActivity {
     CollectionReference exams = db.collection("Exams");
     Button returnHome, btnGraph;
     Parent currentUser;
-    String child;
     ListView examList;
     List<Game> childExams;
     GameAdapter gameAdapter;
@@ -65,9 +64,9 @@ public class childResults extends AppCompatActivity {
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     currentUser = documentSnapshot.toObject(Parent.class);
 
-                    String childEmail = currentUser.getChildEmail();
+                    //String childEmail = currentUser.getChildEmail();
 
-                    queryExams(childEmail);
+                    //queryExams(childEmail);
                 }
             }
         });
