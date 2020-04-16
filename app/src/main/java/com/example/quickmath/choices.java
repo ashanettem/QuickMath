@@ -19,9 +19,8 @@ import android.widget.Toast;
 
 public class choices extends AppCompatActivity {
 
-    String email, type, difficulty;
-    int gLength;
-    RadioButton q5, q10, q15;
+    String email;
+    RadioButton q5, q10, q15, easy, medium, hard;
     SharedPreferences sp;
     SharedPreferences.Editor spEdit;
     Button add,subtract,multiply,divide,logOut;
@@ -90,14 +89,13 @@ public class choices extends AppCompatActivity {
         });
         mHomeWatcher.startWatch();
 
-        type ="";
-        difficulty = "";
-        gLength = 0;
-
         email = getIntent().getStringExtra("User");
         q5 = findViewById(R.id.q5);
         q10 = findViewById(R.id.q10);
         q15 = findViewById(R.id.q15);
+        easy = findViewById(R.id.btnEasy);
+        medium = findViewById(R.id.btnMedium);
+        hard = findViewById(R.id.btnHard);
 
         sp = getSharedPreferences("SP", MODE_PRIVATE);
         spEdit = sp.edit();
@@ -122,164 +120,398 @@ public class choices extends AppCompatActivity {
         startActivity(i);
     }
 
-    public void getValues(View view){
-
-        if (q5.isChecked()){
-            gLength = 5;
-        }
-        else if(q10.isChecked()){
-            gLength = 10;
-        }
-        else if(q15.isChecked()){
-            gLength = 15;
-        }
-        else{
-            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-
-    }
-
     public void Button_add(View view) {
 
-
-
-
-        if (q5.isChecked()) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","addition");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 5);
-            spEdit.commit();
-            startActivity(intent);
+        if (easy.isChecked()) {
+            if (q5.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q10.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q15.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if (q10.isChecked()) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","addition");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 10);
-            spEdit.commit();
-            startActivity(intent);
+        else if (medium.isChecked()){
+            if (q5.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q10.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q15.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if (q15.isChecked()) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","addition");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 15);
-            spEdit.commit();
-            startActivity(intent);
+        else if(hard.isChecked()){
+            if (q5.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q10.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q15.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","addition");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
         else{
-            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Please Select a Difficulty",Toast.LENGTH_SHORT).show();
         }
-
-
-
-
 
     }
 
     public void Button_multiply(View view) {
 
-        if (q5.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","multiply");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 5);
-            spEdit.commit();
-            startActivity(intent);
+        if (easy.isChecked()) {
+            if (q5.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q10.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q15.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if (q10.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","multiply");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 10);
-            spEdit.commit();
-            startActivity(intent);
+        else if (medium.isChecked()){
+            if (q5.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q10.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q15.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if (q15.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","multiply");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 15);
-            spEdit.commit();
-            startActivity(intent);
+        else if(hard.isChecked()){
+            if (q5.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q10.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else if (q15.isChecked()) {
+                Intent intent=new Intent(this,allcalculation.class);
+                intent.putExtra("value","multiply");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
         }
         else{
-
+            Toast.makeText(this,"Please Select a Difficulty",Toast.LENGTH_SHORT).show();
         }
-
-
-
 
     }
 
     public void Button_subtract(View view) {
 
-        if (q5.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","subtract");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 5);
-            spEdit.commit();
-            startActivity(intent);
+        if (easy.isChecked()) {
+            if (q5.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q10.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q15.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "easy");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
+        } else if (medium.isChecked()) {
+            if (q5.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q10.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q15.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "medium");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
+        } else if (hard.isChecked()) {
+            if (q5.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 5);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q10.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 10);
+                spEdit.commit();
+                startActivity(intent);
+            } else if (q15.isChecked()) {
+                Intent intent = new Intent(this, allcalculation.class);
+                intent.putExtra("value", "subtract");
+                intent.putExtra("User", email);
+                intent.putExtra("difficulty", "hard");
+                spEdit.putInt("numOfQuestions", 15);
+                spEdit.commit();
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Please Select a Difficulty", Toast.LENGTH_SHORT).show();
 
         }
-        else if (q10.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","subtract");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 10);
-            spEdit.commit();
-            startActivity(intent);
-        }
-        else if (q15.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","subtract");
-            intent.putExtra("User", email);
-            spEdit.putInt("numOfQuestions", 15);
-            spEdit.commit();
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
-        }
-
-
-
-
     }
 
     public void divide_button(View view) {
 
-        if (q5.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","divide");
-            spEdit.putInt("numOfQuestions", 5);
-            spEdit.commit();
-            startActivity(intent);
-        }
-        else if (q10.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","divide");
-            spEdit.putInt("numOfQuestions", 10);
-            spEdit.commit();
-            startActivity(intent);
-        }
-        else if (q15.isChecked() == true) {
-            Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","divide");
-            spEdit.putInt("numOfQuestions", 15);
-            spEdit.commit();
-            startActivity(intent);
-        }
-        else{
-            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
-        }
-
-
+            if (easy.isChecked()) {
+                if (q5.isChecked()) {
+                    Intent intent = new Intent(this, allcalculation.class);
+                    intent.putExtra("value", "divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "easy");
+                    spEdit.putInt("numOfQuestions", 5);
+                    spEdit.commit();
+                    startActivity(intent);
+                } else if (q10.isChecked()) {
+                    Intent intent = new Intent(this, allcalculation.class);
+                    intent.putExtra("value", "divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "easy");
+                    spEdit.putInt("numOfQuestions", 10);
+                    spEdit.commit();
+                    startActivity(intent);
+                } else if (q15.isChecked()) {
+                    Intent intent = new Intent(this, allcalculation.class);
+                    intent.putExtra("value", "divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "easy");
+                    spEdit.putInt("numOfQuestions", 15);
+                    spEdit.commit();
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else if (medium.isChecked()){
+                if (q5.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "medium");
+                    spEdit.putInt("numOfQuestions", 5);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else if (q10.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "medium");
+                    spEdit.putInt("numOfQuestions", 10);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else if (q15.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "medium");
+                    spEdit.putInt("numOfQuestions", 15);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else if(hard.isChecked()){
+                if (q5.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "hard");
+                    spEdit.putInt("numOfQuestions", 5);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else if (q10.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "hard");
+                    spEdit.putInt("numOfQuestions", 10);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else if (q15.isChecked()) {
+                    Intent intent=new Intent(this,allcalculation.class);
+                    intent.putExtra("value","divide");
+                    intent.putExtra("User", email);
+                    intent.putExtra("difficulty", "hard");
+                    spEdit.putInt("numOfQuestions", 15);
+                    spEdit.commit();
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+                }
+            }
+            else{
+                Toast.makeText(this,"Please Select a Difficulty",Toast.LENGTH_SHORT).show();
+            }
 
     }
 

@@ -45,8 +45,10 @@ public class allcalculation extends AppCompatActivity {
     int count = 0;
     int tryMe = 0;
     int Final_result = 0;
+    int rand1, rand2;
     String email;
     String value;
+    String difficulty;
     int numOfquestions;
     SharedPreferences sp;
     private ImageView gc, rx;
@@ -137,6 +139,8 @@ public class allcalculation extends AppCompatActivity {
 
         email = getIntent().getStringExtra("User");
         value = getIntent().getStringExtra("value");
+        difficulty = getIntent().getStringExtra("difficulty");
+
 
         sp = getSharedPreferences("SP", MODE_PRIVATE);
         numOfquestions = sp.getInt("numOfQuestions", 5);
@@ -156,10 +160,10 @@ public class allcalculation extends AppCompatActivity {
         tocall();
 
 
-        inputButton.setOnClickListener(this::calulate);
+        inputButton.setOnClickListener(this::calculate);
     }
 
-    private void calulate(View view) {
+    private void calculate(View view) {
         validateAnswer();
     }
 
@@ -196,41 +200,124 @@ public class allcalculation extends AppCompatActivity {
 
 
     private void to_get_random() {
-        int rand1 = new Random().nextInt(100);// random number between 0 to 5
-        int rand2 = new Random().nextInt(5);
+
+        if (difficulty.equals("easy")) {
+
+            rand1 = new Random().nextInt(9);// random number between 0 to 5
+            rand2 = new Random().nextInt(9);
+
+            if (rand1 < rand2) {
+                to_get_random();
+                // Toast.makeText(this," here",Toast.LENGTH_LONG).show();
 
 
-        if (rand1 < rand2) {
-            to_get_random();
-            // Toast.makeText(this," here",Toast.LENGTH_LONG).show();
+            } else if (rand1 > rand2 || rand1 == rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
+                num11.setText(String.valueOf(rand1));
+                num12.setText(String.valueOf(rand2));
+
+                String mychoice = getIntent().getStringExtra("value");
 
 
-        } else if (rand1 > rand2 || rand1 == rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
-            num11.setText(String.valueOf(rand1));
-            num12.setText(String.valueOf(rand2));
+                if (mychoice.equals("addition")) {
+                    toadd(rand1, rand2);
+                } else if (mychoice.equals("multiply")) {
+                    tomultiply(rand1, rand2);
 
-            String mychoice = getIntent().getStringExtra("value");
+                } else if (mychoice.equals("subtract")) {
+                    tosubtract(rand1, rand2);
 
+                } else if (mychoice.equals("divide")) {
+                    todivide(rand1, rand2);
 
-            if (mychoice.equals("addition")) {
-                toadd(rand1, rand2);
-            } else if (mychoice.equals("multiply")) {
-                tomultiply(rand1, rand2);
+                } else {
+                    Toast.makeText(this, " inside error", Toast.LENGTH_LONG).show();
+                }
 
-            } else if (mychoice.equals("subtract")) {
-                tosubtract(rand1, rand2);
-
-            } else if (mychoice.equals("divide")) {
-                todivide(rand1, rand2);
 
             } else {
-                Toast.makeText(this, " inside error", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, " there is an error", Toast.LENGTH_LONG).show();
             }
 
-
-        } else {
-            Toast.makeText(this, " there is an error", Toast.LENGTH_LONG).show();
         }
+        else if (difficulty.equals("medium")){
+            rand1 = new Random().nextInt(25);
+            rand2 = new Random().nextInt(25);
+
+            if (rand1 < rand2) {
+                to_get_random();
+                // Toast.makeText(this," here",Toast.LENGTH_LONG).show();
+
+
+            } else if (rand1 > rand2 || rand1 == rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
+                num11.setText(String.valueOf(rand1));
+                num12.setText(String.valueOf(rand2));
+
+                String mychoice = getIntent().getStringExtra("value");
+
+
+                if (mychoice.equals("addition")) {
+                    toadd(rand1, rand2);
+                } else if (mychoice.equals("multiply")) {
+                    tomultiply(rand1, rand2);
+
+                } else if (mychoice.equals("subtract")) {
+                    tosubtract(rand1, rand2);
+
+                } else if (mychoice.equals("divide")) {
+                    todivide(rand1, rand2);
+
+                } else {
+                    Toast.makeText(this, " inside error", Toast.LENGTH_LONG).show();
+                }
+
+
+            } else {
+                Toast.makeText(this, " there is an error", Toast.LENGTH_LONG).show();
+            }
+        }
+        else if (difficulty.equals("hard")){
+            rand1 = new Random().nextInt(50);
+            rand2 = new Random().nextInt(25);
+
+            if (rand1 < rand2) {
+                to_get_random();
+                // Toast.makeText(this," here",Toast.LENGTH_LONG).show();
+
+
+            } else if (rand1 > rand2 || rand1 == rand2) {  //make sure that random number 1 is greater than random number 2(save some time)
+                num11.setText(String.valueOf(rand1));
+                num12.setText(String.valueOf(rand2));
+
+                String mychoice = getIntent().getStringExtra("value");
+
+
+                if (mychoice.equals("addition")) {
+                    toadd(rand1, rand2);
+                } else if (mychoice.equals("multiply")) {
+                    tomultiply(rand1, rand2);
+
+                } else if (mychoice.equals("subtract")) {
+                    tosubtract(rand1, rand2);
+
+                } else if (mychoice.equals("divide")) {
+                    todivide(rand1, rand2);
+
+                } else {
+                    Toast.makeText(this, " inside error", Toast.LENGTH_LONG).show();
+                }
+
+
+            } else {
+                Toast.makeText(this, " there is an error", Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "Error" + difficulty, Toast.LENGTH_LONG).show();
+            Intent i = new Intent(this, choices.class);
+            startActivity(i);
+        }
+
+
 
     }
 
