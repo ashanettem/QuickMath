@@ -1,73 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ic_launcher_background"
-    tools:context=".childResults">
+    android:orientation="vertical"
+    tools:context=".childResults"
+    android:padding="15dp">
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="221dp"
-        android:layout_height="78dp"
-        android:layout_marginBottom="536dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/result"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="56sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-
+        android:textStyle="bold" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gameList"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginBottom="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0"/>
+        android:layout_height="500dp">
 
+    </androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/btnGraph"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="25dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFF"
         android:text="@string/graph"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845" />
+        android:textColor="#8e69ad"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/btnHome"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="228dp"
-        android:padding="25dp"
+        android:layout_marginTop="10dp"
+        android:background="#FFF"
         android:text="@string/cResHome"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.845" />
+        android:textColor="#8e69ad"
+        android:textSize="25dp"
+        android:textStyle="bold" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

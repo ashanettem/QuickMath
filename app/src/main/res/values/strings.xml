@@ -51,4 +51,9 @@
     <string name="child_registration">Child Registration</string>
     <string name="parent_registration">Parent Registration</string>
     <string name="email">Email</string>
+    <string name="typeRes">TYPE:</string>
+    <string name="parentDashText">Parent:</string>
+    <string name="create_game">Create Game</string>
+    <string name="email_address_username">Email Address / Username</string>
+    <string name="game_type">Game Type:</string>
 </resources>

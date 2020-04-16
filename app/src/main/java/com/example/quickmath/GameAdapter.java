@@ -1,46 +1,58 @@
 package com.example.quickmath;
 
-import android.app.Activity;
-import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-public class GameAdapter extends ArrayAdapter<Game> {
-    public GameAdapter(Context context, int resource, List<Game> objects){
-        super(context, resource, objects);
+import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
+import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+
+public class GameAdapter extends FirestoreRecyclerAdapter<Game, GameAdapter.GameHolder> {
+
+    public GameAdapter(@NonNull FirestoreRecyclerOptions<Game> options) {
+        super(options);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent){
-        if (convertView == null){
-            convertView = ((Activity) getContext()).getLayoutInflater()
-                    .inflate(R.layout.game_result, parent,false);
+    protected void onBindViewHolder(@NonNull GameHolder holder, int position, @NonNull Game model) {
+        holder.tvChild.setText(model.getChild());
+        holder.tvType.setText(model.getType());
+        holder.tvScore.setText(String.valueOf(model.getScore()));
+        holder.tvCount.setText(String.valueOf(model.getNumOfQuestions()));
+    }
+
+    @NonNull
+    @Override
+    public GameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.game_result, parent, false);
+        return new GameHolder(v);
+    }
+
+    public class GameHolder extends RecyclerView.ViewHolder {
+        TextView tvChild;
+        TextView tvType;
+        TextView tvScore;
+        TextView tvCount;
+
+        TextView tvType1;
+        TextView tvScore1;
+        TextView tvCount1;
+
+        public GameHolder(View itemView){
+            super(itemView);
+            tvChild = itemView.findViewById(R.id.tvChildRes);
+            tvType = itemView.findViewById(R.id.tvGameTypeRes);
+            tvScore = itemView.findViewById(R.id.tvScoreRes);
+            tvCount = itemView.findViewById(R.id.tvQuestionCountRes);
+            tvType1 = itemView.findViewById(R.id.tvGameTypeRes1);
+            tvScore1 = itemView.findViewById(R.id.tvScoreRes1);
+            tvCount1 = itemView.findViewById(R.id.tvQuestionCountRes1);
         }
 
-        TextView tvChild = (TextView) convertView.findViewById(R.id.tvChild);
-        TextView tvGameType = (TextView) convertView.findViewById(R.id.tvGameType);
-        TextView tvQuestionCount = (TextView) convertView.findViewById(R.id.tvQuestionCount);
-        TextView tvScore = (TextView) convertView.findViewById(R.id.tvScore);
 
-
-        Game currentGame = getItem(position);
-
-        tvChild.setText("Child Email: ");
-        tvGameType.setText("Operator: ");
-        tvQuestionCount.setText("Number of Questions: ");
-        tvScore.setText("Score: ");
-
-
-
-        tvChild.append(currentGame.getChild());
-        tvGameType.append(currentGame.getType());
-        tvQuestionCount.append(String.valueOf(currentGame.getNumOfQuestions()));
-        tvScore.append(String.valueOf(currentGame.getScore()));
-
-        return convertView;
     }
 }

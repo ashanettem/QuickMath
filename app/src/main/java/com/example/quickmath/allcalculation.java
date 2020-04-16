@@ -3,10 +3,19 @@ package com.example.quickmath;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.PowerManager;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
@@ -42,6 +51,39 @@ public class allcalculation extends AppCompatActivity {
     SharedPreferences sp;
     private ImageView gc, rx;
 
+    SoundPool soundPool;
+    private int sound1;
+
+    private boolean mIsBound = false;
+    private MusicService mServ;
+    private ServiceConnection Scon =new ServiceConnection(){
+
+        public void onServiceConnected(ComponentName name, IBinder
+                binder) {
+            mServ = ((MusicService.ServiceBinder)binder).getService();
+        }
+
+        public void onServiceDisconnected(ComponentName name) {
+            mServ = null;
+        }
+    };
+
+    void doBindService(){
+        bindService(new Intent(this,MusicService.class),
+                Scon,Context.BIND_AUTO_CREATE);
+        mIsBound = true;
+    }
+
+    void doUnbindService()
+    {
+        if(mIsBound)
+        {
+            unbindService(Scon);
+            mIsBound = false;
+        }
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +92,47 @@ public class allcalculation extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_allcalculation);
+
+        doBindService();
+        Intent music = new Intent();
+        music.setClass(this, MusicService.class);
+        startService(music);
+
+        HomeWatcher mHomeWatcher;
+
+        mHomeWatcher = new HomeWatcher(this);
+        mHomeWatcher.setOnHomePressedListener(new HomeWatcher.OnHomePressedListener() {
+            @Override
+            public void onHomePressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+            @Override
+            public void onHomeLongPressed() {
+                if (mServ != null) {
+                    mServ.pauseMusic();
+                }
+            }
+        });
+        mHomeWatcher.startWatch();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            AudioAttributes audioAttributes = new AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_ASSISTANCE_SONIFICATION)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                    .build();
+
+            soundPool = new SoundPool.Builder()
+                    .setMaxStreams(6)
+                    .setAudioAttributes(audioAttributes)
+                    .build();
+        } else {
+            soundPool = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        }
+
+        sound1 = soundPool.load(this, R.raw.sound1, 1);
+
 
 
         email = getIntent().getStringExtra("User");
@@ -104,6 +187,7 @@ public class allcalculation extends AppCompatActivity {
 
             Intent go_back_to_first_page = new Intent(this, choices.class);
             startActivity(go_back_to_first_page);
+
             Toast.makeText(this,"Complete",Toast.LENGTH_LONG).show();
         }
     }
@@ -221,16 +305,68 @@ public class allcalculation extends AppCompatActivity {
                 rx.setVisibility(View.VISIBLE);
             }
 
-
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    tocall();// goback and call the call method
-                }
-            }, 2000);
-
+            if (count <= numOfquestions) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        tocall();// goback and call the call method
+                    }
+                }, 1000);
+            }
+            else {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        soundPool.play(sound1,1,1,0,0,1);
+                        tocall();// goback and call the call method
+                    }
+                }, 1000);
+            }
 
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (mServ != null) {
+            mServ.resumeMusic();
+        }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        PowerManager pm = (PowerManager)
+                getSystemService(Context.POWER_SERVICE);
+        boolean isScreenOn = false;
+        if (pm != null) {
+            isScreenOn = pm.isScreenOn();
+        }
+
+        if (!isScreenOn) {
+            if (mServ != null) {
+                mServ.pauseMusic();
+            }
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        doUnbindService();
+        Intent music = new Intent();
+        music.setClass(this,MusicService.class);
+        stopService(music);
+
+        soundPool.release();
+        soundPool = null;
+
     }
 
 }

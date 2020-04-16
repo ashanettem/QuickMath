@@ -1,81 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/ic_launcher_background"
     android:orientation="vertical"
-    tools:context=".parentDash">
+    tools:context=".parentDash"
+    android:padding="15dp">
 
 
     <TextView
         android:id="@+id/adminDash"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:textAlignment="center"
         android:text="@string/dashboard"
+        android:textAlignment="center"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
-        android:textSize="33sp"
+        android:textSize="50sp"
         android:textStyle="bold"
 
         />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginTop="50dp">
 
-        <TextView
+    <TextView
             android:id="@+id/adminTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/administrator"
+            android:text="@string/parentDashText"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="20sp"
-
-            android:textStyle="bold" />
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/adminDash"/>
 
         <TextView
             android:id="@+id/tvAdmin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:textColor="@color/common_google_signin_btn_text_dark"
-            android:textSize="20sp"
-            />
-    </TableRow>
-    <TableRow
+            android:textSize="25sp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/adminTxt"
+            android:layout_below="@id/adminDash"/>
+
+    <ImageView
+        android:id="@+id/ivPic"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        >
+        android:layout_height="240dp"
+        android:layout_below="@id/tvAdmin"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/home_logo" />
+
         <Button
             android:id="@+id/results"
-            android:layout_width="130dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/child_results"
-            android:layout_marginLeft="70dp"/>
+            android:layout_below="@id/ivPic"
+            android:layout_marginTop="50dp"
+            android:background="#FFFFFF"
+            android:textColor="#8e69ad"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/creatEx"
-            android:layout_width="130dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/create_exam"
-            android:layout_marginLeft="15dp"/>
-    </TableRow>
+            android:text="@string/create_game"
+            android:layout_below="@id/results"
+            android:layout_marginTop="10dp"
+            android:background="#FFFFFF"
+            android:textColor="#8e69ad"
+            android:textSize="30sp"
+            android:textStyle="bold"/>
+
 
     <Button
         android:id="@+id/logOutbtn"
-        android:layout_width="130dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/home"
-        android:layout_gravity="center"
+        android:layout_below="@id/creatEx"
+        android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
+        android:textColor="#8e69ad"
+        android:textSize="30sp"
+        android:textStyle="bold"
         />
 
 
-</LinearLayout>
+</RelativeLayout>
