@@ -23,7 +23,7 @@ public class choices extends AppCompatActivity {
     RadioButton q5, q10, q15;
     SharedPreferences sp;
     SharedPreferences.Editor spEdit;
-    Button add,substract,mulitply,divide,logOut;
+    Button add,subtract,multiply,divide,logOut;
 
     private boolean mIsBound = false;
     private MusicService mServ;
@@ -97,15 +97,15 @@ public class choices extends AppCompatActivity {
         spEdit = sp.edit();
 
         add = findViewById(R.id.add_button);
-        substract = findViewById(R.id.subtract_button);
-        mulitply = findViewById(R.id.multiply_button);
+        subtract = findViewById(R.id.subtract_button);
+        multiply = findViewById(R.id.multiply_button);
         divide = findViewById(R.id.divide_button);
         logOut = findViewById(R.id.logOut_button);
 
         add.setOnClickListener(this::Button_add);
-        substract.setOnClickListener(this::Button_substract);
+        subtract.setOnClickListener(this::Button_subtract);
         divide.setOnClickListener(this::divide_button);
-        mulitply.setOnClickListener(this::Button_multiply);
+        multiply.setOnClickListener(this::Button_multiply);
 
         logOut.setOnClickListener(this::logOut);
 
@@ -189,11 +189,11 @@ public class choices extends AppCompatActivity {
 
     }
 
-    public void Button_substract(View view) {
+    public void Button_subtract(View view) {
 
         if (q5.isChecked() == true) {
             Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","substract");
+            intent.putExtra("value","subtract");
             intent.putExtra("User", email);
             spEdit.putInt("numOfQuestions", 5);
             spEdit.commit();
@@ -202,7 +202,7 @@ public class choices extends AppCompatActivity {
         }
         else if (q10.isChecked() == true) {
             Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","substract");
+            intent.putExtra("value","subtract");
             intent.putExtra("User", email);
             spEdit.putInt("numOfQuestions", 10);
             spEdit.commit();
@@ -210,7 +210,7 @@ public class choices extends AppCompatActivity {
         }
         else if (q15.isChecked() == true) {
             Intent intent=new Intent(this,allcalculation.class);
-            intent.putExtra("value","substract");
+            intent.putExtra("value","subtract");
             intent.putExtra("User", email);
             spEdit.putInt("numOfQuestions", 15);
             spEdit.commit();

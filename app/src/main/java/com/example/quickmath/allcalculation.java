@@ -185,6 +185,8 @@ public class allcalculation extends AppCompatActivity {
             currentGame.setChild(email);
             gamesDB.add(currentGame);
 
+            soundPool.play(sound1,1,1,0,0,1);
+
             Intent go_back_to_first_page = new Intent(this, choices.class);
             startActivity(go_back_to_first_page);
 
@@ -317,7 +319,7 @@ public class allcalculation extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        soundPool.play(sound1,1,1,0,0,1);
+
                         tocall();// goback and call the call method
                     }
                 }, 1000);
