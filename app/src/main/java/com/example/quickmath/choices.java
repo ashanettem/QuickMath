@@ -19,11 +19,13 @@ import android.widget.Toast;
 
 public class choices extends AppCompatActivity {
 
-    String email;
+    String email, type, difficulty;
+    int gLength;
     RadioButton q5, q10, q15;
     SharedPreferences sp;
     SharedPreferences.Editor spEdit;
     Button add,subtract,multiply,divide,logOut;
+
 
     private boolean mIsBound = false;
     private MusicService mServ;
@@ -88,6 +90,10 @@ public class choices extends AppCompatActivity {
         });
         mHomeWatcher.startWatch();
 
+        type ="";
+        difficulty = "";
+        gLength = 0;
+
         email = getIntent().getStringExtra("User");
         q5 = findViewById(R.id.q5);
         q10 = findViewById(R.id.q10);
@@ -116,7 +122,28 @@ public class choices extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void getValues(View view){
+
+        if (q5.isChecked()){
+            gLength = 5;
+        }
+        else if(q10.isChecked()){
+            gLength = 10;
+        }
+        else if(q15.isChecked()){
+            gLength = 15;
+        }
+        else{
+            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+
+    }
+
     public void Button_add(View view) {
+
 
 
 
@@ -181,7 +208,7 @@ public class choices extends AppCompatActivity {
             startActivity(intent);
         }
         else{
-            Toast.makeText(this, "Please Select How Many \nQuestions You Wish To Do.", Toast.LENGTH_SHORT).show();
+
         }
 
 
